@@ -1,7 +1,8 @@
 alias ls='ls --color=auto'
 export USE_CCACHE=1
 export TSK_HOME=/home/dick/tsk/sleuthkit
-export PATH=$PATH:/home/dick/.gem/ruby/1.9.1/bin:/home/dick/bin
+export PATH=$PATH:/home/dick/.gem/ruby/1.9.1/bin:/home/dick/bin:/opt/jdk1.6.0_31/bin:/opt/jdk1.6.0_31/jre/bin
+export DISPLAY=:0
 [ ! "$UID" = "0" ] && archbey -c white
 [  "$UID" = "0" ] && archbey -c red
 #PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]└──\[\e[01;36m\]>>\[\e[0m\]"
