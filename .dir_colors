@@ -200,3 +200,10 @@ EXEC 00;32
 .oga 00;36
 .spx 00;36
 .xspf 00;36
+# source files
+.java 00;33
+.c 00;33
+.cpp 00;33
+.py 00;33
+.xml 00;33
+.h 00;33
