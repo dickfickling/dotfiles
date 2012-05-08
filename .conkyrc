@@ -34,7 +34,8 @@ color2 gray
 ##############################################
 TEXT
 CPU: ${cpubar cpu0}
-RAM: $membar
+RAM: $membar 
+$mem / $memmax
 Battery: $battery 
 ${battery_bar 11,0}
 
