@@ -13,10 +13,14 @@ alias screen='TERM=screen screen'
 function tt() {
 	pushd "$1" && ls;
 }
+function mktt() {
+    mkdir -p "$1" && pushd "$1"
+}
 alias nn='popd && ls'
 alias ta='tmux attach'
 alias lc='tmux list-clients'
 alias ddg='links ddg.gg'
+alias yc='links news.ycombinator.com'
 #alias tweet='ttytter -status=$1'
 function tweet() {
 	ttytter -status="$1";
