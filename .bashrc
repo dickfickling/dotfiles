@@ -12,7 +12,7 @@ export DISPLAY=:0
 function tt() {
 	pushd "$1" && ls;
 }
-function mktt() {
+function mdtt() {
     mkdir -p "$1" && pushd "$1"
 }
 function newpy() {
@@ -25,11 +25,7 @@ function h2d() {
 function d2h() {
     printf "%x\n" "$1"
 }
-function tweet() {
-	t update "$1";
-}
 
-alias screen='TERM=screen screen'
 alias ls='ls --color=auto'
 alias nn='popd && ls'
 alias ta='tmux attach'
@@ -41,6 +37,10 @@ alias ..='cd ..'
 alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
+alias ulna='mosh ulna'
+alias install='sudo pacman -S $1'
+alias remove='sudo pacman -R $1'
+alias tweet='t update $1'
 #alias tweet='ttytter -status=$1'
 
 if [[ ! -n $TMUX ]] ; then tmux attach ; fi

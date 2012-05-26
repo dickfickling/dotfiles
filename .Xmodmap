@@ -1,0 +1,9 @@
+! Configure F13 as Insert
+! F14 as PrintScr
+! F15 as ScrollLock
+! F16 as Pause/Break
+
+keycode 191 =   Insert
+keycode 192 =   Print   Sys_Req
+keycode 193 =   Scroll_Lock
+keycode 194 =   Pause   Break
