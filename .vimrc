@@ -12,3 +12,5 @@ set shiftwidth=4
 "    set mouse=a
 "endif
 filetype plugin indent on
+map <S-Enter> O<Esc>
+map <CR> o<Esc>
