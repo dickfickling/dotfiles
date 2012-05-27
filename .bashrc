@@ -1,7 +1,7 @@
 ########## DICK'S SUPER AWESOME BASHRC OF SUPER DUPER SPECTACULARITY ##########
 
 ###### OSX SPECIFIC OPTIONS ###################################################
-if [ $OSX ]; then
+if [[ $HOME == /Users/* ]]; then
 
     export LC_ALL=en_US.UTF-8
     # MacPorts Installer addition on 2012-03-24_at_10:02:59: adding an appropriate PATH variable for use with MacPorts.
@@ -9,6 +9,7 @@ if [ $OSX ]; then
     # Finished adapting your PATH environment variable for use with MacPorts.
     PS1='[\u@\h \W]\$ '
     alias ls='gls --color=auto'
+    alias radius='ssh radius'
     eval $(gdircolors -b ~/.dir_colors)
     function chrome() {
         if [[ $1 == *.* ]];
@@ -31,7 +32,7 @@ else
     PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
     eval $(dircolors -b ~/.dir_colors)
     alias ls='ls --color=auto'
-    alias ulna='mosh ulna'
+    alias ulna='ssh ulna'
     alias install='sudo pacman -S $1'
     alias remove='sudo pacman -R $1'
     export USE_CCACHE=1
