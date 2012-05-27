@@ -1,2 +1,1 @@
-OSX=true
 source ~/.bashrc
