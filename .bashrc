@@ -1,14 +1,16 @@
 ########## DICK'S SUPER AWESOME BASHRC OF SUPER DUPER SPECTACULARITY ##########
 
 ###### OSX SPECIFIC OPTIONS ###################################################
-if [ $OSX ]; then
+if [[ $HOME == /Users/* ]]; then
 
+    [ ! "$UID" = "0" ] && osxbey -c white
+    [  "$UID" = "0" ] && osxbey -c red
     export LC_ALL=en_US.UTF-8
     # MacPorts Installer addition on 2012-03-24_at_10:02:59: adding an appropriate PATH variable for use with MacPorts.
     export PATH=/opt/local/bin:/opt/local/sbin:/Users/dick/Documents/android/android-sdk-macosx/platform-tools:$PATH
     # Finished adapting your PATH environment variable for use with MacPorts.
-    PS1='[\u@\h \W]\$ '
     alias ls='gls --color=auto'
+    alias radius='ssh radius'
     eval $(gdircolors -b ~/.dir_colors)
     function chrome() {
         if [[ $1 == *.* ]];
@@ -27,11 +29,9 @@ else
 
     [ ! "$UID" = "0" ] && archbey -c white
     [  "$UID" = "0" ] && archbey -c red
-    source ~/.git_completion.sh
-    PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
     eval $(dircolors -b ~/.dir_colors)
     alias ls='ls --color=auto'
-    alias ulna='mosh ulna'
+    alias ulna='ssh ulna'
     alias install='sudo pacman -S $1'
     alias remove='sudo pacman -R $1'
     export USE_CCACHE=1
@@ -72,6 +72,9 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias tweet='t update $1'
+
+source ~/.git_completion.sh
+PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 
 if [[ ! -n $TMUX ]] ; then tmux attach ; fi
 #PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]└──\[\e[01;36m\]>>\[\e[0m\]"
