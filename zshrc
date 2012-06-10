@@ -19,11 +19,12 @@ compinit
 ##### OSX SPECIFIC OPTIONS ###################################################
 if [[ $HOME == /Users/* ]]; then
 
+    [ ! "$UID" = "0" ] && osxbey -c white
+    [  "$UID" = "0" ] && osxbey -c red
     export LC_ALL=en_US.UTF-8
     # MacPorts Installer addition on 2012-03-24_at_10:02:59: adding an appropriate PATH variable for use with MacPorts.
     export PATH=/opt/local/bin:/opt/local/sbin:/Users/dick/Documents/android/android-sdk-macosx/platform-tools:$PATH
     # Finished adapting your PATH environment variable for use with MacPorts.
-    PS1='[\u@\h \W]\$ '
     alias ls='gls --color=auto'
     alias radius='ssh radius'
     eval $(gdircolors -b ~/.dir_colors)
@@ -44,7 +45,6 @@ else
 
     [ ! "$UID" = "0" ] && archbey -c white
     [  "$UID" = "0" ] && archbey -c red
-    PS1='[%n@%m %~] $ '
     eval $(dircolors -b ~/.dir_colors)
     alias ls='ls --color=auto'
     alias ulna='ssh ulna'
@@ -59,6 +59,7 @@ fi
 
 export EDITOR=vim
 export DISPLAY=:0
+export PS1='[%n@%m %~] $ '
 
 #function tt() {
 #    pushd "$1" && ls;
