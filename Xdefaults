@@ -1,0 +1,86 @@
+! Xft settings ---------------------------------------------------------------
+
+Xft.dpi:        96
+Xft.antialias:  true
+Xft.rgba:       rgb
+Xft.hinting:    true
+Xft.hintstyle:  hintslight
+
+!-------------------------------------------------------------------------------
+!
+!	U R X V T - Settings
+!
+URxvt*geometry:					80x25
+URxvt*foreground:				#F1F1F1
+URxvt*borderLess:				false
+URxvt*depth:					32
+URxvt*background:			    #202530
+URxvt*scrollBar:	            false
+URxvt*font:					xft:DejaVu Sans Mono-11
+URxvt*cursorBlink:				false
+URxvt*fullCursor:                true
+URxvt*scrollColor:				#111111
+URxvt*perl-ext-common:			default,clipboard
+URxvt*keysym.F11:               perl:fullscreen:switch
+
+!colors
+!black
+URxvt*color0:					#000000
+URxvt*color8:                   #555555
+!red
+URxvt*color1:					#bb0000
+URxvt*color9:					#ff5555
+!green
+URxvt*color2:					#00bb00
+URxvt*color10:					#55ff55
+!yellow
+URxvt*color3:					#bbbb00
+URxvt*color11:					#ffff55
+!blue
+URxvt*color4:					#0000bb
+URxvt*color12:					#5555ff
+!magenta
+URxvt*color5:					#bb00bb
+URxvt*color13:					#ff55ff
+!cyan
+URxvt*color6:					#00bbbb
+URxvt*color14:					#55ffff
+!white
+URxvt*color7:					#bbbbbb
+URxvt*color15:					#FFFFFF
+
+
+!!black
+!URxvt*color0:					#676767
+!URxvt*color8:					#757575
+!!red
+!URxvt*color1:					#EA6868
+!URxvt*color9:					#FF7272
+!!green
+!URxvt*color2:					#ABCB8D
+!URxvt*color10:					#AFD78A
+!!yellow
+!URxvt*color3:					#E8AE5B
+!URxvt*color11:					#FFA75D
+!!blue
+!URxvt*color4:					#71C5F4
+!URxvt*color12:					#67CDE9
+!!magenta
+!URxvt*color5:					#E2BAF1
+!URxvt*color13:					#ECAEE9
+!!cyan
+!URxvt*color6:					#21F1EA
+!URxvt*color14:					#36FFFC
+!!white
+!URxvt*color7:					#F1F1F1
+!URxvt*color15:					#FFFFFF
+
+!-------------------------------------------------------------------------------
+!
+!	X T E R M - Settings
+!
+*visualBell:                    true
+XTerm*background:               black
+XTerm*foreground:               white
+XTerm*cursorColor:              cyan
+XTerm*font:                     *-fixed-*-*-*-14-*
