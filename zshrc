@@ -2,8 +2,11 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
+setopt hist_ignore_all_dups
+setopt hist_ignore_space
 setopt autocd
-setopt autopushd
+setopt RM_STAR_WAIT
+#setopt autopushd
 unsetopt beep
 bindkey -v
 # End of lines configured by zsh-newuser-install
@@ -13,6 +16,32 @@ zstyle :compinstall filename '/home/dick/.zshrc'
 autoload -Uz compinit
 compinit
 # End of lines added by compinstall
+
+# key bindings
+bindkey "\e[1~" beginning-of-line
+bindkey "\e[4~" end-of-line
+bindkey "\e[5~" beginning-of-history
+bindkey "\e[6~" end-of-history
+bindkey "\e[3~" delete-char
+bindkey "\e[2~" quoted-insert
+bindkey "\e[5C" forward-word
+bindkey "\eOc" emacs-forward-word
+bindkey "\e[5D" backward-word
+bindkey "\eOd" emacs-backward-word
+bindkey "\ee[C" forward-word
+bindkey "\ee[D" backward-word
+bindkey "^H" backward-delete-word
+# for rxvt
+bindkey "\e[8~" end-of-line
+bindkey "\e[7~" beginning-of-line
+# for non RH/Debian xterm, can't hurt for RH/DEbian xterm
+bindkey "\eOH" beginning-of-line
+bindkey "\eOF" end-of-line
+# for freebsd console
+bindkey "\e[H" beginning-of-line
+bindkey "\e[F" end-of-line
+# completion in the middle of a line
+bindkey '^i' expand-or-complete-prefix
 
 ########## DICK'S SUPER AWESOME ZSHRC OF SUPER DUPER SPECTACULARITY ##########
 
@@ -50,6 +79,9 @@ else
     alias ulna='ssh ulna'
     alias install='sudo pacman -S $1'
     alias remove='sudo pacman -R $1'
+    alias update='sudo pacman -Syu'
+    alias v+='amixer set Master 5%+ unmute'
+    alias v-='amixer set Master 5%- unmute'
     export USE_CCACHE=1
     export TSK_HOME=/home/dick/tsk/sleuthkit
     export PATH=$PATH:/home/dick/.gem/ruby/1.9.1/bin:/home/dick/bin:/opt/jdk1.6.0_31/bin:/opt/jdk1.6.0_31/jre/bin
@@ -59,7 +91,7 @@ fi
 
 export EDITOR=vim
 export DISPLAY=:0
-export PS1='[%n@%m %~] $ '
+export PS1='[%~] '
 
 #function tt() {
 #    pushd "$1" && ls;
@@ -81,22 +113,6 @@ function h2d() {
 function d2h() {
     printf "%x\n" "$1"
 }
-function ddg() {
-    linkslink="links https://duckduckgo.com/?q="
-    for var in "$@"
-    do
-        linkslink+="$var+";
-    done
-    $linkslink
-}
-function goog() {
-    googlink="links https://google.com/search?q="
-    for var in "$@"
-    do
-        googlink+="$var+";
-   done
-    $googlink
-}
 
 #alias nn='popd && ls'
 alias ta='tmux attach'
@@ -104,10 +120,6 @@ alias lc='tmux list-clients'
 alias watch='watch --interval=.5'
 alias yc='links news.ycombinator.com'
 alias md='mkdir'
-#alias ..='cd ..'
-#alias ...='cd ../..'
-#alias ....='cd ../../..'
-#alias .....='cd ../../../..'
 alias tweet='t update $1'
 #set -o vi
 #bind -m vi-insert "\C-l":clear-screen

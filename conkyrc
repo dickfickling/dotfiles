@@ -16,7 +16,7 @@ draw_shades no
 draw_outline no
 draw_borders no
 draw_graph_borders no
-default_color gray
+default_color 202530
 #default_color 70a0c0
 default_shade_color 000000
 default_outline_color d9d7d6

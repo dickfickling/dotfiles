@@ -17,3 +17,4 @@ map <S-Enter> O<Esc>
 map <CR> o<Esc>
 map! <F7> <ESC> :wq <Enter>
 map <F7> :wq <Enter>
+nnoremap <F5> :w ! ./%<Enter>
