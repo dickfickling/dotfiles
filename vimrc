@@ -3,6 +3,13 @@ set backup
 set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
 set ttimeoutlen=100
+set relativenumber
+set undofile
+set undodir=~/.vim/tmp
+set ignorecase
+set smartcase
+set gdefault
+
 
 syntax on
 colorscheme desert

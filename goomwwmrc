@@ -1,0 +1,2 @@
+rule chromium cover,maximize_horz,maximize_vert
+rule urxvt cover,maximize_horz,maximize_vert

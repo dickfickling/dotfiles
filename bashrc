@@ -27,8 +27,8 @@ if [[ $HOME == /Users/* ]]; then
 ###### ARCH SPECIFIC OPTIONS ##################################################
 else
 
-    [ ! "$UID" = "0" ] && archbey -c white
-    [  "$UID" = "0" ] && archbey -c red
+    #[ ! "$UID" = "0" ] && archbey -c white
+    #[  "$UID" = "0" ] && archbey -c red
     eval $(dircolors -b ~/.dir_colors)
     alias ls='ls --color=auto'
     alias ulna='ssh ulna'
@@ -73,7 +73,7 @@ alias ....='cd ../../..'
 alias .....='cd ../../../..'
 alias tweet='t update $1'
 
-source ~/.git_completion.sh
+#source ~/.git_completion.sh
 PS1='[\u@\h \W$(__git_ps1 " (%s)")]\$ '
 
 if [[ ! -n $TMUX ]] ; then tmux attach ; fi

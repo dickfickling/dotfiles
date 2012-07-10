@@ -31,6 +31,7 @@ bindkey "\eOd" emacs-backward-word
 bindkey "\ee[C" forward-word
 bindkey "\ee[D" backward-word
 bindkey "^H" backward-delete-word
+bindkey '^R' history-incremental-search-backward
 # for rxvt
 bindkey "\e[8~" end-of-line
 bindkey "\e[7~" beginning-of-line
@@ -72,16 +73,17 @@ if [[ $HOME == /Users/* ]]; then
 ###### ARCH SPECIFIC OPTIONS ##################################################
 else
 
-    [ ! "$UID" = "0" ] && archbey -c white
-    [  "$UID" = "0" ] && archbey -c red
+    #[ ! "$UID" = "0" ] && archbey -c white
+    #[  "$UID" = "0" ] && archbey -c red
     eval $(dircolors -b ~/.dir_colors)
     alias ls='ls --color=auto'
     alias ulna='ssh ulna'
     alias install='sudo pacman -S $1'
     alias remove='sudo pacman -R $1'
     alias update='sudo pacman -Syu'
-    alias v+='amixer set Master 5%+ unmute'
-    alias v-='amixer set Master 5%- unmute'
+    alias v+='amixer set Master 5%+ unmute &> /dev/null'
+    alias v-='amixer set Master 5%- unmute &> /dev/null'
+    alias ubuntu='qemu-kvm -hda ~/qemu/ubuntu -m 1024 -vga std -smp 2 -boot d'
     export USE_CCACHE=1
     export TSK_HOME=/home/dick/tsk/sleuthkit
     export PATH=$PATH:/home/dick/.gem/ruby/1.9.1/bin:/home/dick/bin:/opt/jdk1.6.0_31/bin:/opt/jdk1.6.0_31/jre/bin
@@ -91,7 +93,9 @@ fi
 
 export EDITOR=vim
 export DISPLAY=:0
-export PS1='[%~] '
+autoload -U colors && colors
+PROMPT='%F{green}[%~] %f'
+RPROMPT='%F{green}[%W - %*]%f'
 
 #function tt() {
 #    pushd "$1" && ls;
@@ -121,6 +125,7 @@ alias watch='watch --interval=.5'
 alias yc='links news.ycombinator.com'
 alias md='mkdir'
 alias tweet='t update $1'
+alias ds='du -h -d0'
 #set -o vi
 #bind -m vi-insert "\C-l":clear-screen
 

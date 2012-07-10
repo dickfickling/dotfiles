@@ -1,3 +1,5 @@
+!Xcursor.theme:                  Vanilla-DMZ
+
 ! Xft settings ---------------------------------------------------------------
 
 Xft.dpi:        96
@@ -14,7 +16,8 @@ URxvt*geometry:					80x25
 URxvt*foreground:				#F1F1F1
 URxvt*borderLess:				false
 URxvt*depth:					32
-URxvt*background:			    #202530
+!URxvt*background:			    #202530
+URxvt*background:			    #545454
 URxvt*scrollBar:	            false
 URxvt*font:					xft:DejaVu Sans Mono-11
 URxvt*cursorBlink:				false
@@ -28,25 +31,25 @@ URxvt*keysym.F11:               perl:fullscreen:switch
 URxvt*color0:					#000000
 URxvt*color8:                   #555555
 !red
-URxvt*color1:					#bb0000
+URxvt*color1:					#DC7878
 URxvt*color9:					#ff5555
 !green
-URxvt*color2:					#00bb00
+URxvt*color2:					#78DC78
 URxvt*color10:					#55ff55
 !yellow
-URxvt*color3:					#bbbb00
+URxvt*color3:					#DCDC78
 URxvt*color11:					#ffff55
 !blue
-URxvt*color4:					#0000bb
+URxvt*color4:					#7878DC
 URxvt*color12:					#5555ff
 !magenta
-URxvt*color5:					#bb00bb
+URxvt*color5:					#DC78DC
 URxvt*color13:					#ff55ff
 !cyan
-URxvt*color6:					#00bbbb
+URxvt*color6:					#78DCDC
 URxvt*color14:					#55ffff
 !white
-URxvt*color7:					#bbbbbb
+URxvt*color7:					#DCDCDC
 URxvt*color15:					#FFFFFF
 
 
@@ -84,3 +87,4 @@ XTerm*background:               black
 XTerm*foreground:               white
 XTerm*cursorColor:              cyan
 XTerm*font:                     *-fixed-*-*-*-14-*
+
