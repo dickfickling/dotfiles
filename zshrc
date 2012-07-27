@@ -49,8 +49,8 @@ bindkey '^i' expand-or-complete-prefix
 ##### OSX SPECIFIC OPTIONS ###################################################
 if [[ $HOME == /Users/* ]]; then
 
-    [ ! "$UID" = "0" ] && osxbey -c white
-    [  "$UID" = "0" ] && osxbey -c red
+    #[ ! "$UID" = "0" ] && osxbey -c white
+    #[  "$UID" = "0" ] && osxbey -c red
     export LC_ALL=en_US.UTF-8
     # MacPorts Installer addition on 2012-03-24_at_10:02:59: adding an appropriate PATH variable for use with MacPorts.
     export PATH=/opt/local/bin:/opt/local/sbin:/Users/dick/Documents/android/android-sdk-macosx/platform-tools:$PATH
@@ -83,10 +83,13 @@ else
     alias update='sudo pacman -Syu'
     alias v+='amixer set Master 5%+ unmute &> /dev/null'
     alias v-='amixer set Master 5%- unmute &> /dev/null'
+    alias c='sudo netcfg up'
+    alias d='sudo netcfg down'
     alias ubuntu='qemu-kvm -hda ~/qemu/ubuntu -m 1024 -vga std -smp 2 -boot d'
+    alias tether='sudo ifconfig usb0 up && sudo dhcpcd usb0'
     export USE_CCACHE=1
     export TSK_HOME=/home/dick/tsk/sleuthkit
-    export PATH=$PATH:/home/dick/.gem/ruby/1.9.1/bin:/home/dick/bin:/opt/jdk1.6.0_31/bin:/opt/jdk1.6.0_31/jre/bin
+    export PATH=$PATH:/home/dick/.gem/ruby/1.9.1/bin:/home/dick/bin:/opt/jdk1.6.0_33/bin:/opt/jdk1.6.0_33/jre/bin
 
 fi
 ###### ARCHITECTURE INDEPENDENT ###############################################
@@ -94,8 +97,8 @@ fi
 export EDITOR=vim
 export DISPLAY=:0
 autoload -U colors && colors
-PROMPT='%F{green}[%~] %f'
-RPROMPT='%F{green}[%W - %*]%f'
+PROMPT='%F{cyan}[%~] %f'
+RPROMPT='%F{cyan}[%W - %*]%f'
 
 #function tt() {
 #    pushd "$1" && ls;
@@ -117,11 +120,17 @@ function h2d() {
 function d2h() {
     printf "%x\n" "$1"
 }
+function up() {
+    for ((i = 0; i < $1; i += 1)); do
+        cd ..
+    done
+}
+
 
 #alias nn='popd && ls'
 alias ta='tmux attach'
 alias lc='tmux list-clients'
-alias watch='watch --interval=.5'
+alias watch='watch --interval=.5 '
 alias yc='links news.ycombinator.com'
 alias md='mkdir'
 alias tweet='t update $1'

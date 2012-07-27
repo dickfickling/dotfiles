@@ -36,7 +36,7 @@ else
     alias remove='sudo pacman -R $1'
     export USE_CCACHE=1
     export TSK_HOME=/home/dick/tsk/sleuthkit
-    export PATH=$PATH:/home/dick/.gem/ruby/1.9.1/bin:/home/dick/bin:/opt/jdk1.6.0_31/bin:/opt/jdk1.6.0_31/jre/bin
+    export PATH=$PATH:/home/dick/.gem/ruby/1.9.1/bin:/home/dick/bin:/opt/jdk1.6.0_33/bin:/opt/jdk1.6.0_33/jre/bin
 
 fi
 ###### ARCHITECTURE INDEPENDENT ###############################################

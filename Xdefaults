@@ -1,5 +1,3 @@
-!Xcursor.theme:                  Vanilla-DMZ
-
 ! Xft settings ---------------------------------------------------------------
 
 Xft.dpi:        96
@@ -13,74 +11,79 @@ Xft.hintstyle:  hintslight
 !	U R X V T - Settings
 !
 URxvt*geometry:					80x25
-URxvt*foreground:				#F1F1F1
+!URxvt*foreground:				#F1F1F1
 URxvt*borderLess:				false
 URxvt*depth:					32
 !URxvt*background:			    #202530
-URxvt*background:			    #545454
 URxvt*scrollBar:	            false
-URxvt*font:					xft:DejaVu Sans Mono-11
+URxvt*font:					xft:DejaVu Sans Mono-10
 URxvt*cursorBlink:				false
 URxvt*fullCursor:                true
 URxvt*scrollColor:				#111111
-URxvt*perl-ext-common:			default,clipboard
+!URxvt*perl-ext-common:			default,clipboard
 URxvt*keysym.F11:               perl:fullscreen:switch
+URxvt.keysym.C-Tab:             ^[[19;2~
 
 !colors
-!black
-URxvt*color0:					#000000
-URxvt*color8:                   #555555
-!red
-URxvt*color1:					#DC7878
-URxvt*color9:					#ff5555
-!green
-URxvt*color2:					#78DC78
-URxvt*color10:					#55ff55
-!yellow
-URxvt*color3:					#DCDC78
-URxvt*color11:					#ffff55
-!blue
-URxvt*color4:					#7878DC
-URxvt*color12:					#5555ff
-!magenta
-URxvt*color5:					#DC78DC
-URxvt*color13:					#ff55ff
-!cyan
-URxvt*color6:					#78DCDC
-URxvt*color14:					#55ffff
-!white
-URxvt*color7:					#DCDCDC
-URxvt*color15:					#FFFFFF
+#define S_base03        #002b36
+#define S_base02        #073642
+#define S_base01        #586e75
+#define S_base00        #657b83
+#define S_base0         #839496
+#define S_base1         #93a1a1
+#define S_base2         #eee8d5
+#define S_base3         #fdf6e3
+#define S_yellow        #b58900
+#define S_orange        #cb4b16
+#define S_red           #dc322f
+#define S_magenta       #d33682
+#define S_violet        #6c71c4
+#define S_blue          #268bd2
+#define S_cyan          #2aa198
+#define S_green         #859900
 
+URxvt*background:            S_base3
+URxvt*foreground:            S_base00
+URxvt*fading:                40
+URxvt*fadeColor:             S_base03
+URxvt*cursorColor:           S_base1
+URxvt*pointerColorBackground:S_base01
+URxvt*pointerColorForeground:S_base1
 
-!!black
-!URxvt*color0:					#676767
-!URxvt*color8:					#757575
-!!red
-!URxvt*color1:					#EA6868
-!URxvt*color9:					#FF7272
-!!green
-!URxvt*color2:					#ABCB8D
-!URxvt*color10:					#AFD78A
-!!yellow
-!URxvt*color3:					#E8AE5B
-!URxvt*color11:					#FFA75D
-!!blue
-!URxvt*color4:					#71C5F4
-!URxvt*color12:					#67CDE9
-!!magenta
-!URxvt*color5:					#E2BAF1
-!URxvt*color13:					#ECAEE9
-!!cyan
-!URxvt*color6:					#21F1EA
-!URxvt*color14:					#36FFFC
-!!white
-!URxvt*color7:					#F1F1F1
-!URxvt*color15:					#FFFFFF
+!! black dark/light
+URxvt*color0:                S_base02
+URxvt*color8:                S_base03
 
+!! red dark/light
+URxvt*color1:                S_red
+URxvt*color9:                S_orange
+
+!! green dark/light
+URxvt*color2:                S_green
+URxvt*color10:               S_base01
+
+!! yellow dark/light
+URxvt*color3:                S_yellow
+URxvt*color11:               S_base00
+
+!! blue dark/light
+URxvt*color4:                S_blue
+URxvt*color12:               S_base0
+
+!! magenta dark/light
+URxvt*color5:                S_magenta
+URxvt*color13:               S_violet
+
+!! cyan dark/light
+URxvt*color6:                S_cyan
+URxvt*color14:               S_base1
+
+!! white dark/light
+URxvt*color7:                S_base2
+URxvt*color15:               S_base3
 !-------------------------------------------------------------------------------
 !
-!	X T E R M - Settings
+!	 T E R M - Settings
 !
 *visualBell:                    true
 XTerm*background:               black
