@@ -1,5 +1,6 @@
 set nocompatible
 set background=light
+"set background=dark
 set backup
 set backupdir=~/.vim/tmp
 set directory=~/.vim/tmp
@@ -13,7 +14,7 @@ set gdefault
 
 
 syntax on
-colorscheme solarized
+"colorscheme solarized
 set expandtab
 set tabstop=4
 set shiftwidth=4
@@ -25,6 +26,7 @@ map <S-Enter> O<Esc>
 map <CR> o<Esc>
 map! <F7> <ESC> :wq <Enter>
 map <F7> :wq <Enter>
+command Wq wq
 nnoremap <F5> :w ! ./%<Enter>
  " When editing a file, always jump to the last known cursor position.
  " Don't do it when the position is invalid or when inside an event
