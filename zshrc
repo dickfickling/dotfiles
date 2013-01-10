@@ -5,6 +5,7 @@ SAVEHIST=10000
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt autocd
+setopt PROMPT_SUBST
 setopt RM_STAR_WAIT
 #setopt autopushd
 unsetopt beep
@@ -94,10 +95,13 @@ else
 fi
 ###### ARCHITECTURE INDEPENDENT ###############################################
 
+function parse_git_branch {
+    git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
 export EDITOR=vim
 export DISPLAY=:0
 autoload -U colors && colors
-PROMPT='%F{cyan}[%~] %f'
+PROMPT='%B%F{blue}%c%b%F{green}$(parse_git_branch) %f'
 RPROMPT='%F{cyan}[%W - %*]%f'
 
 #function tt() {
