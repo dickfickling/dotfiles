@@ -97,7 +97,7 @@ fi
 export EDITOR=vim
 export DISPLAY=:0
 autoload -U colors && colors
-PROMPT='%F{cyan}[%~] %f'
+PROMPT='%F{cyan}%M:%~ %f'
 RPROMPT='%F{cyan}[%W - %*]%f'
 
 #function tt() {
