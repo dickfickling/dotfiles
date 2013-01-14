@@ -101,7 +101,7 @@ function parse_git_branch {
 export EDITOR=vim
 export DISPLAY=:0
 autoload -U colors && colors
-PROMPT='%B%F{blue}%c%b%F{green}$(parse_git_branch) %f'
+PROMPT='%B%F{blue}%m:%c%b%F{green}$(parse_git_branch) %f'
 RPROMPT='%F{cyan}[%W - %*]%f'
 
 #function tt() {
