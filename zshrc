@@ -139,6 +139,8 @@ alias yc='links news.ycombinator.com'
 alias md='mkdir'
 alias tweet='t update $1'
 alias ds='du -h -d0'
+alias achtung='ssh dfickl@achtung.ccs.neu.edu'
+alias lin='ssh dick@173.255.234.17'
 #set -o vi
 #bind -m vi-insert "\C-l":clear-screen
 
