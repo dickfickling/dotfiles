@@ -79,7 +79,7 @@ else
     eval $(dircolors -b ~/.dir_colors)
     alias ls='ls --color=auto'
     alias ulna='ssh ulna'
-    alias install='sudo pacman -S $1'
+    alias install='sudo yum install'
     alias remove='sudo pacman -R $1'
     alias update='sudo pacman -Syu'
     alias v+='amixer set Master 5%+ unmute &> /dev/null'
@@ -129,6 +129,10 @@ function up() {
         cd ..
     done
 }
+function chpwd() {
+    emulate -L zsh
+    ls
+}
 
 
 #alias nn='popd && ls'
@@ -141,6 +145,7 @@ alias tweet='t update $1'
 alias ds='du -h -d0'
 alias achtung='ssh dfickl@achtung.ccs.neu.edu'
 alias lin='ssh dick@173.255.234.17'
+alias code='cd /usr/local/checkit/'
 #set -o vi
 #bind -m vi-insert "\C-l":clear-screen
 
@@ -148,3 +153,4 @@ if [[ ! -n $TMUX ]] ; then tmux attach ; fi
 #PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]└──\[\e[01;36m\]>>\[\e[0m\]"
 #export PS1="\\w\$(__git_ps1 '(%s)') \$ "
 export TERM=rxvt
+export PYTHONPATH="/usr/local/checkit":PYTHONPATH
