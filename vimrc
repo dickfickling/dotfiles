@@ -13,6 +13,7 @@ set smartcase
 set gdefault
 set backspace=indent,eol,start
 set splitright
+set ruler
 
 
 syntax on
