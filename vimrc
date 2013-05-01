@@ -14,6 +14,7 @@ set gdefault
 set backspace=indent,eol,start
 set splitright
 set ruler
+set pastetoggle=<F2>
 
 
 syntax on

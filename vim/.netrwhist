@@ -1,8 +1,6 @@
 let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
+let g:netrw_dirhist_cnt =4
 let g:netrw_dirhist_1='/home/dick/android/system/device/samsung/toro/self-extractors'
 let g:netrw_dirhist_2='/home/dick'
 let g:netrw_dirhist_3='/home/dick/.config/pianobar'
-let g:netrw_dirhist_4='/usr/local/checkit/sqlautocode-0.6b1'
-let g:netrw_dirhist_5='/usr/local/checkit/server'
-let g:netrw_dirhist_6='/usr/local/checkit/server/sql'
+let g:netrw_dirhist_4='/home/dick/.vim'

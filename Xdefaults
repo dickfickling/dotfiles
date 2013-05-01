@@ -11,13 +11,12 @@ Xft.hintstyle:  hintslight
 !	U R X V T - Settings
 !
 URxvt*geometry:					80x25
-!URxvt*foreground:				#F1F1F1
 URxvt*borderLess:				false
 URxvt*depth:					32
-!URxvt*background:			    #202530
 URxvt*scrollBar:	            false
 URxvt*font:                     -*-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-1
 !URxvt*font:                     xft:inconsolata:pixelsize=13:antialias=true
+urxvt*font:                     xft:Terminus:pixelsize=12
 URxvt*cursorBlink:				false
 URxvt*fullCursor:                true
 URxvt*scrollColor:				#111111
@@ -26,67 +25,62 @@ URxvt*keysym.F11:               perl:fullscreen:switch
 URxvt.keysym.C-Tab:             ^[[19;2~
 
 !colors
-#define S_base03        #002b36
-#define S_base02        #073642
+#define S_base03        #202530
+#define S_base02        #303540
 #define S_base01        #586e75
 #define S_base00        #657b83
-#define S_base0         #839496
-#define S_base1         #93a1a1
-#define S_base2         #eee8d5
-#define S_base3         #fdf6e3
-#define S_yellow        #b58900
-#define S_orange        #cb4b16
-#define S_red           #dc322f
-#define S_magenta       #d33682
-#define S_violet        #6c71c4
-#define S_blue          #268bd2
-#define S_cyan          #2aa198
-#define S_green         #859900
+#define S_base0         #93b4d6
+#define S_base1         #a3d1d1
+#define S_base2         #E1E1E1
+#define S_base3         #F7F7F7
+#define S_yellow        #c59910
+#define S_orange        #db5b26
+#define S_red           #FF4444
+#define S_magenta       #ff53a0
+#define S_violet        #7c81d4
+#define S_blue          #36b4fa
+#define S_cyan          #4af1e8
+#define S_green         #95ff60
 
-URxvt*background:            S_base2
-URxvt*foreground:            S_base02
 !URxvt*fading:                40
 URxvt*fadeColor:             S_base03
 URxvt*cursorColor:           S_base1
 URxvt*pointerColorBackground:S_base01
 URxvt*pointerColorForeground:S_base1
 
-!! black dark/light
-URxvt*color0:                S_base02
-URxvt*color8:                S_base03
+!! simple_rainbow
+URxvt*background:  #343230
+URxvt*foreground:  #dcdccc
 
-!! red dark/light
-URxvt*color1:                S_red
-URxvt*color9:                S_orange
-
-!! green dark/light
-URxvt*color2:                S_green
-URxvt*color10:               S_base01
-
-!! yellow dark/light
-URxvt*color3:                S_yellow
-URxvt*color11:               S_base00
-
-!! blue dark/light
-URxvt*color4:                S_blue
-URxvt*color12:               S_base0
-
-!! magenta dark/light
-URxvt*color5:                S_magenta
-URxvt*color13:               S_violet
-
-!! cyan dark/light
-URxvt*color6:                S_cyan
-URxvt*color14:               S_base1
-
-!! white dark/light
-URxvt*color7:                S_base2
-URxvt*color15:               S_base3
+!black
+URxvt*color0:      #343230
+URxvt*color8:      #888888
+!red
+URxvt*color1:      #ff8278
+URxvt*color9:      #ff8278
+!green
+URxvt*color2:      #bde077
+URxvt*color10:     #bde077
+!yellow
+URxvt*color3:      #eadc84
+URxvt*color11:     #eadc84
+!blue
+URxvt*color4:      #77bee0
+URxvt*color12:     #77bee0
+!magenta
+URxvt*color5:      #dd91f3
+URxvt*color13:     #dd91f3
+!cyan
+URxvt*color6:      #ffc178
+URxvt*color14:     #ffc178
+!white
+URxvt*color7:      #eeeeee
+URxvt*color15:     #dddddd
 !-------------------------------------------------------------------------------
 !
 !	 T E R M - Settings
 !
-*visualBell:                    true
+*visualBell:                    false
 XTerm*background:               black
 XTerm*foreground:               white
 XTerm*cursorColor:              cyan

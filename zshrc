@@ -2,6 +2,7 @@
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
+setopt extended_history
 setopt hist_ignore_all_dups
 setopt hist_ignore_space
 setopt autocd
@@ -44,6 +45,11 @@ bindkey "\e[H" beginning-of-line
 bindkey "\e[F" end-of-line
 # completion in the middle of a line
 bindkey '^i' expand-or-complete-prefix
+# stupid debian
+bindkey -M viins "\e[A" up-line-or-history
+bindkey -M viins "\e[B" down-line-or-history
+bindkey -M viins "\eOA" up-line-or-history
+bindkey -M viins "\eOB" down-line-or-history
 
 ########## DICK'S SUPER AWESOME ZSHRC OF SUPER DUPER SPECTACULARITY ##########
 
@@ -79,7 +85,7 @@ else
     eval $(dircolors -b ~/.dir_colors)
     alias ls='ls --color=auto'
     alias ulna='ssh ulna'
-    alias install='sudo yum install'
+    alias install='sudo apt-get install'
     alias remove='sudo pacman -R $1'
     alias update='sudo pacman -Syu'
     alias v+='amixer set Master 5%+ unmute &> /dev/null'
@@ -101,7 +107,7 @@ function parse_git_branch {
 export EDITOR=vim
 export DISPLAY=:0
 autoload -U colors && colors
-PROMPT='%B%F{blue}%m:%c%b%F{green}$(parse_git_branch) %f'
+PROMPT='%B%F{white}%m:%c%b%F{green}$(parse_git_branch) %f'
 RPROMPT='%F{cyan}[%W - %*]%f'
 
 #function tt() {
@@ -132,6 +138,11 @@ function up() {
 function chpwd() {
     emulate -L zsh
     ls
+function guest() {
+    setxkbmap us && xmodmap -e "pointer = default"
+}
+function me() {
+    setxkbmap us -variant colemak && xmodmap ~/.Xmodmap
 }
 
 
@@ -143,10 +154,10 @@ alias yc='links news.ycombinator.com'
 alias md='mkdir'
 alias tweet='t update $1'
 alias ds='du -h -d0'
-alias achtung='ssh dfickl@achtung.ccs.neu.edu'
-alias lin='ssh dick@173.255.234.17'
 alias code='cd /usr/local/checkit/'
 alias serv='cd /usr/local/checkit/engine/server/'
+alias goom='goomwwm -cli -restart'
+alias o='xdg-open'
 #set -o vi
 #bind -m vi-insert "\C-l":clear-screen
 
