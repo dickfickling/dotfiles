@@ -11,6 +11,9 @@ set undodir=~/.vim/tmp
 set ignorecase
 set smartcase
 set gdefault
+set backspace=indent,eol,start
+set splitright
+set ruler
 
 
 syntax on
@@ -18,9 +21,9 @@ syntax on
 set expandtab
 set tabstop=4
 set shiftwidth=4
-"if has('mouse')
-"    set mouse=a
-"endif
+if has('mouse')
+    set mouse=a
+endif
 filetype plugin indent on
 map <S-Enter> O<Esc>
 map <CR> o<Esc>
