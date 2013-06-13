@@ -15,4 +15,4 @@ xbindkeys &
 #exec ck-launch-session dbus-launch openbox-session
 google-chrome &
 urxvt &
-exec ck-launch-session dbus-launch goomwwm
+exec dbus-launch goomwwm

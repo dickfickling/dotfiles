@@ -138,6 +138,7 @@ function up() {
 function chpwd() {
     emulate -L zsh
     ls
+}
 function guest() {
     setxkbmap us && xmodmap -e "pointer = default"
 }
