@@ -108,7 +108,7 @@ export EDITOR=vim
 export DISPLAY=:0
 autoload -U colors && colors
 PROMPT='%B%F{white}%m:%c%b%F{green}$(parse_git_branch) %f'
-RPROMPT='%F{cyan}[%W - %*]%f'
+#RPROMPT='%F{cyan}[%W - %*]%f'
 
 #function tt() {
 #    pushd "$1" && ls;
@@ -117,12 +117,22 @@ RPROMPT='%F{cyan}[%W - %*]%f'
 #    mkdir -p "$1" && pushd "$1"
 #}
 function newc() {
-    cp ~/.vim/default.c "$1" &&
-        vim "+call cursor(4, 4)" $1
+    if [[ ! -f "$1" ]]; then
+        cp ~/.vim/default.c "$1"
+    fi
+    vim "+call cursor(4, 4)" $1
+}
+function newby() {
+    if [[ ! -f "$1" ]]; then
+        cp ~/.vim/default.rb "$1"
+    fi
+    vim "+call cursor(4, 4)" $1
 }
 function newpy() {
-    cp ~/.vim/default.py "$1" &&
-        vim "+call cursor(4, 4)" $1
+    if [[ ! -f "$1" ]]; then
+        cp ~/.vim/default.py "$1"
+    fi
+    vim "+call cursor(4, 4)" $1
 }
 function h2d() {
     printf "%d\n" "0x$1"
@@ -144,6 +154,10 @@ function guest() {
 }
 function me() {
     setxkbmap us -variant colemak && xmodmap ~/.Xmodmap
+}
+function sleep() {
+    echo "killall pianobar" | at now + $1 minutes
+    pianobar
 }
 
 

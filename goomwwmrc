@@ -4,3 +4,4 @@ border 0
 menuselect modkeyup
 onlyauto
 launch space
+launcher dmenu_run -fn 'Terminus:14'
