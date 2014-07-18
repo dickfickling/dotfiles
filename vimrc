@@ -1,4 +1,4 @@
-set nocompatible
+"set nocompatible
 "set background=light
 set background=dark
 set backup
@@ -13,15 +13,19 @@ set smartcase
 set gdefault
 set backspace=indent,eol,start
 set splitright
+set splitbelow
 set ruler
 set pastetoggle=<F2>
+map <F3> :NERDTree<CR>
+map <S-Right> :tabn<CR>
+map <S-Left> :tabp<CR>
 
 
 syntax on
 "colorscheme solarized
 set expandtab
-set tabstop=4
-set shiftwidth=4
+set tabstop=2
+set shiftwidth=2
 if has('mouse')
     set mouse=a
 endif
@@ -40,3 +44,9 @@ autocmd BufReadPost *
  \ if line("'\"") > 0 && line("'\"") <= line("$") |
  \   exe "normal! g`\"" |
  \ endif
+map OA <Up>
+map OB <Down>
+map OD <Left>
+map OC <Right>
+let g:CommandTHighlightColor='Pmenu'
+execute pathogen#infect()
