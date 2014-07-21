@@ -150,7 +150,7 @@ alias goom='goomwwm -cli -restart'
 alias o='xdg-open'
 alias ag='ag -i'
 alias n='vim ~/Dropbox/notes'
-#alias grep='echo "Did you mean ag?" && ag'
+alias rmf='rm -rf'
 #set -o vi
 #bind -m vi-insert "\C-l":clear-screen
 
