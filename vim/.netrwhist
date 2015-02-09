@@ -1,8 +1,0 @@
-let g:netrw_dirhistmax  =10
-let g:netrw_dirhist_cnt =6
-let g:netrw_dirhist_1='/home/dick/android/system/device/samsung/toro/self-extractors'
-let g:netrw_dirhist_2='/home/dick'
-let g:netrw_dirhist_3='/home/dick/.config/pianobar'
-let g:netrw_dirhist_4='/home/dick/.vim'
-let g:netrw_dirhist_5='/Users/dickfickling/.vim'
-let g:netrw_dirhist_6='/Users/dickfickling/honey/honey/savehoney-app/apps'
