@@ -16,7 +16,7 @@ set splitright
 set splitbelow
 set ruler
 set pastetoggle=<F2>
-map <F3> :NERDTree<CR>
+map <F3> :NERDTreeToggle<CR>
 map <S-Right> :tabn<CR>
 map <S-Left> :tabp<CR>
 
@@ -50,3 +50,6 @@ map OD <Left>
 map OC <Right>
 let g:CommandTHighlightColor='Pmenu'
 execute pathogen#infect()
+
+autocmd VimEnter * NERDTree
+autocmd VimEnter * wincmd w
