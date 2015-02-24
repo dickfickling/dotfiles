@@ -79,7 +79,7 @@ alias ss='source ~/.zshrc'
 export EDITOR=vim
 export DISPLAY=:0
 autoload -U colors && colors
-PROMPT='%B%F{red}%M:%F{white}%c%b%F{green}$(parse_git_branch)%f • '
+PROMPT='%B%F{red}%M%F{white}:%F{blue}%c%b%F{green}$(parse_git_branch)%f • '
 RPROMPT='%F{white}%*%f'
 
 #function tt() {
