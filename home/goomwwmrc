@@ -1,4 +1,4 @@
-rule chromium cover,maximize_horz,maximize_vert
+rule opera cover,maximize_horz,maximize_vert
 rule urxvt cover,maximize_horz,maximize_vert
 border 0
 menuselect modkeyup

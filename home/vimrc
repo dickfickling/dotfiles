@@ -21,6 +21,7 @@ map <S-Right> :tabn<CR>
 map <S-Left> :tabp<CR>
 
 
+set ttymouse=sgr
 syntax on
 "colorscheme solarized
 set expandtab

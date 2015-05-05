@@ -1,73 +1,37 @@
 background yes
 use_xft yes
-xftfont monospace:size=9
+xftfont terminus:size=10
 xftalpha 1
 update_interval 1.0
 total_run_times 0
 own_window yes
-own_window_transparent yes
-own_window_type desktop
-own_window_hints undecorated,below,sticky,skip_taskbar,skip_pager
-own_window_colour black
+own_window_type panel
+own_window_transparent no
+own_window_colour 202020
 double_buffer yes
-minimum_size 1 1
-maximum_width 240
+minimum_size 1680 5
+maximum_width 1680
 draw_shades no
 draw_outline no
 draw_borders no
-draw_graph_borders no
-default_color 202530
-#default_color 70a0c0
-default_shade_color 000000
-default_outline_color d9d7d6
-alignment tl
-gap_x 12
-gap_y 12
+draw_graph_borders yes
+
+default_color c0c0c0
+default_shade_color red
+default_outline_color grey
+
+color1 8844EE
+color2 a6a6a6
+alignment top_middle
+gap_x 0
+gap_y 0
 no_buffers yes
 uppercase no
-cpu_avg_samples 2
-override_utf8_locale no
-color1 red
-color2 gray
-##############################################
-#  Output
-##############################################
+override_utf8_locale yes
+pad_percents 2
+use_spacer none
+short_units yes
+
+
 TEXT
-CPU: ${cpubar cpu0}
-RAM: $membar 
-$mem / $memmax
-Battery: $battery 
-${battery_bar 11,0}
-
-${font sans-serif:bold:size=8}SYSTEM ${hr 2}
-${font sans-serif:normal:size=8}$sysname $kernel $alignr $machine
-Host:$alignr$nodename
-Uptime:$alignr$uptime
-
-${font sans-serif:bold:size=8}TOP PROCESSES ${hr 2}
-${font sans-serif:normal:size=8}${top_mem name 1}${alignr}${top mem 1} %
-${top_mem name 2}${alignr}${top mem 2} %
-$font${top_mem name 3}${alignr}${top mem 3} %
-$font${top_mem name 4}${alignr}${top mem 4} %
-
-${font sans-serif:bold:size=8}SHORTCUT KEYS ${hr 2}
-${font sans-serif:normal:size=8}Alt+F2$alignr Run Dialog
-Alt+F3$alignr Dmenu
-Super+space$alignr Main Menu
-Super+t$alignr Terminal
-Super+f$alignr File Manager
-Super+e$alignr Editor
-Super+m$alignr Media Player
-Super+w$alignr Web Browser
-Super+q$alignr Force Quit
-Super+g$alignr Character Map
-Super+l$alignr Lock
-Super+u$alignr System Upgrade
-Super+r$alignr Read the DOC
-Super+x$alignr Tiling Keybinds
-Super+v$alignr VMware
-
-${font sans-serif:bold:size=8}DEAD BEEF ${hr 2}
-${font sans-serif:normal:size=8}Artist:${alignr}${execi 2 deadbeef --nowplaying "%a"}
-Title:${alignr}${execi 2 deadbeef --nowplaying "%t"} 
-${voffset 13}${execbar python /home/dick/.scripts/deadbeef.py}
+$alignc ${color1}CPU${color} ${cpu}% ${color1}Proc${color} $processes processes ($running_processes) ${color1}Load${color} $loadavg ${color1}MEM${color} $mem / $memmax $memperc% ${color1}WiFi${color} ${wireless_essid wlp3s0} ${wireless_link_qual wlp3s0}% ${color1}Root${color} ${fs_used /} / ${fs_size /} ${fs_type} ${fs_free_perc /}% ${color1}Home${color} ${fs_used /home} / ${fs_size /home} ${fs_type} ${fs_free_perc /home}% ${color1}Battery${color} ${battery_percent}% ${color1}Time${color} ${time %H:%M:%S}

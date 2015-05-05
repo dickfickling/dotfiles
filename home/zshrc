@@ -163,3 +163,5 @@ export PATH=./node_modules/.bin:$PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/sbin # add sbin to path for rabbit
+
+. $HOME/.z.sh/z.sh
