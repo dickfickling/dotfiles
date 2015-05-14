@@ -127,10 +127,6 @@ function guest() {
 function me() {
     setxkbmap us -variant colemak && xmodmap ~/.Xmodmap
 }
-function sleep() {
-    echo "killall pianobar" | at now + $1 minutes
-    pianobar
-}
 function line() {
     head -n $1 $2 | tail -n 1
 }

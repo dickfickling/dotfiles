@@ -17,6 +17,5 @@ xbindkeys &
 opera &
 urxvt &
 conky &
-dropboxd &
 devmon --exec-on-drive "pcmanfm %d" &
 exec dbus-launch goomwwm

@@ -43,10 +43,10 @@ URxvt.keysym.C-Tab:             ^[[19;2~
 #define S_green         #95ff60
 
 !URxvt*fading:                40
-URxvt*fadeColor:             S_base03
-URxvt*cursorColor:           S_base1
-URxvt*pointerColorBackground:S_base01
-URxvt*pointerColorForeground:S_base1
+URxvt*fadeColor:             #202530
+URxvt*cursorColor:           #a3d1d1
+URxvt*pointerColorBackground:#586e75
+URxvt*pointerColorForeground:#a3d1d1
 
 !! simple_rainbow
 URxvt*background:  #343230

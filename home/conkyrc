@@ -1,4 +1,4 @@
-background yes
+background no
 use_xft yes
 xftfont terminus:size=10
 xftalpha 1
@@ -29,9 +29,9 @@ no_buffers yes
 uppercase no
 override_utf8_locale yes
 pad_percents 2
-use_spacer none
+use_spacer left
 short_units yes
 
 
 TEXT
-$alignc ${color1}CPU${color} ${cpu}% ${color1}Proc${color} $processes processes ($running_processes) ${color1}Load${color} $loadavg ${color1}MEM${color} $mem / $memmax $memperc% ${color1}WiFi${color} ${wireless_essid wlp3s0} ${wireless_link_qual wlp3s0}% ${color1}Root${color} ${fs_used /} / ${fs_size /} ${fs_type} ${fs_free_perc /}% ${color1}Home${color} ${fs_used /home} / ${fs_size /home} ${fs_type} ${fs_free_perc /home}% ${color1}Battery${color} ${battery_percent}% ${color1}Time${color} ${time %H:%M:%S}
+$alignc ${color1}CPU${color} ${cpu}% ${color1}Proc${color} $processes processes ${color1}MEM${color} $mem / $memmax $memperc% ${color1}WiFi${color} ${wireless_essid wlp3s0} ${wireless_link_qual_perc wlp3s0}% ${downspeed wlp3s0} ${color1}Root${color} ${fs_used /} / ${fs_size /} ${fs_type} ${fs_free_perc /}% ${color1}Home${color} ${fs_used /home} / ${fs_size /home} ${fs_type} ${fs_free_perc /home}% ${color1}Sound${color} ${exec amixer get Master -M | tail -n 1 | sed 's/^.*\[\([0-9]*%\)\].*\[\(on\|off\)\].*$/\1 (\2)/'} ${color1}Battery${color} ${battery_percent}% ${color1}Time${color} ${time %H:%M:%S}
