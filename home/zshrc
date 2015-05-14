@@ -133,6 +133,7 @@ function line() {
 
 
 #alias nn='popd && ls'
+alias curl='curl -w "\n"'
 alias ta='tmux attach'
 alias lc='tmux list-clients'
 alias watch='watch --interval=.5 '
