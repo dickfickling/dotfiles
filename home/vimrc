@@ -21,6 +21,7 @@ map <S-Right> :tabn<CR>
 map <S-Left> :tabp<CR>
 
 
+set ttymouse=sgr
 syntax on
 "colorscheme solarized
 set expandtab
@@ -53,3 +54,6 @@ execute pathogen#infect()
 
 autocmd VimEnter * NERDTree
 autocmd VimEnter * wincmd w
+
+" Quit if nerdtree is last buffer
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif

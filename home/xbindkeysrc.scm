@@ -65,6 +65,15 @@
 #"rxvt"
 #  Control + b:2 + Release
 
+"amixer -c 1 set Master 5+"
+   XF86AudioRaiseVolume
+
+"amixer -c 1 set Master 5-"
+   XF86AudioLowerVolume
+
+"amixer -c 1 set Master toggle"
+   XF86AudioMute
+
 ##################################
 # End of xbindkeys configuration #
 ##################################

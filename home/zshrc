@@ -128,16 +128,13 @@ function guest() {
 function me() {
     setxkbmap us -variant colemak && xmodmap ~/.Xmodmap
 }
-function sleep() {
-    echo "killall pianobar" | at now + $1 minutes
-    pianobar
-}
 function line() {
     head -n $1 $2 | tail -n 1
 }
 
 
 #alias nn='popd && ls'
+alias curl='curl -w "\n"'
 alias ta='tmux attach'
 alias lc='tmux list-clients'
 alias watch='watch --interval=.5 '
@@ -164,3 +161,5 @@ export PATH=./node_modules/.bin:$PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/sbin # add sbin to path for rabbit
+
+. $HOME/.z.sh/z.sh
