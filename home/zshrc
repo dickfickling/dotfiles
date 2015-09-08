@@ -162,3 +162,9 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/sbin # add sbin to path for rabbit
 
 . $HOME/.z.sh/z.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/home/dick/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/home/dick/google-cloud-sdk/completion.zsh.inc'

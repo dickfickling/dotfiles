@@ -4,4 +4,5 @@ border 0
 menuselect modkeyup
 onlyauto
 launch space
+focusmode click
 launcher dmenu_run -fn 'Terminus:14'
