@@ -1,3 +1,15 @@
+# This is Git's per-user configuration file.
+[core]
+# Please adapt and uncomment the following lines:
+user = Dick Fickling
+email = dick@fickling.us
 [user]
-	email = dick@fickling.us
 	name = Dick Fickling
+	email = dick@fickling.us
+[alias]
+  apply-gitignore = !git ls-files -ci --exclude-standard -z | xargs git rm --cached
+
+[push]
+	default = simple
+[help]
+	autocorrect = 5

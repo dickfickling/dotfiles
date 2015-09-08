@@ -1,0 +1,1 @@
+Colorizer-0.10.vmb: call delete('/Users/dick/.vim/plugin/ColorizerPlugin.vim')|call delete('/Users/dick/.vim/doc/Colorizer.txt')|call delete('/Users/dick/.vim/autoload/Colorizer.vim')

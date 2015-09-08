@@ -16,7 +16,9 @@ set splitright
 set splitbelow
 set ruler
 set pastetoggle=<F2>
+set wildignore+=**/node_modules/*
 map <F3> :NERDTreeToggle<CR>
+let NERDTreeShowLineNumbers=1
 map <S-Right> :tabn<CR>
 map <S-Left> :tabp<CR>
 
