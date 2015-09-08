@@ -1,5 +1,4 @@
 # Lines configured by zsh-newuser-install
-. ~/z/z.sh
 HISTFILE=~/.histfile
 HISTSIZE=10000
 SAVEHIST=10000
@@ -163,3 +162,9 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/sbin # add sbin to path for rabbit
 
 . $HOME/.z.sh/z.sh
+
+# The next line updates PATH for the Google Cloud SDK.
+source '/Users/dick/.google/google-cloud-sdk/path.zsh.inc'
+
+# The next line enables shell command completion for gcloud.
+source '/Users/dick/.google/google-cloud-sdk/completion.zsh.inc'
