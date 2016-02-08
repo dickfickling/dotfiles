@@ -25,15 +25,20 @@ set wildmode=longest,list,full
 set wildmenu
 
 
-set ttymouse=sgr
 syntax on
 "colorscheme solarized
 set expandtab
 set tabstop=2
 set shiftwidth=2
 if has('mouse')
-    set mouse=a
+  set mouse=a
 endif
+
+if has("mouse_sgr")
+  set ttymouse=sgr
+else
+  set ttymouse=xterm2
+end
 filetype plugin indent on
 map <S-Enter> O<Esc>
 map <CR> o<Esc>
@@ -62,10 +67,9 @@ autocmd VimEnter * wincmd w
 " Quit if nerdtree is last buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
 
-set shell=zsh\ -i
 
 function VReact(name)
-  exec "!dcp ~/.vim/default_react.coffee" a:name
+  exec "!mkdir -p `dirname " a:name "` && cp -n  ~/.vim/default_react.coffee" a:name
   exec "vsplit" a:name
   call cursor(4,24)
 endfunction
