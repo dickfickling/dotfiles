@@ -82,29 +82,17 @@ autoload -U colors && colors
 PROMPT='%B%F{red}%M%F{white}:%F{blue}%c%b%F{green}$(parse_git_branch)%f • '
 RPROMPT='%F{white}%*%f'
 
-#function tt() {
-#    pushd "$1" && ls;
-#}
-#function mdtt() {
-#    mkdir -p "$1" && pushd "$1"
-#}
-function newc() {
-    if [[ ! -f "$1" ]]; then
-        cp ~/.vim/default.c "$1"
-    fi
-    vim "+call cursor(4, 4)" $1
-}
-function newby() {
-    if [[ ! -f "$1" ]]; then
-        cp ~/.vim/default.rb "$1"
-    fi
-    vim "+call cursor(4, 4)" $1
-}
 function newpy() {
     if [[ ! -f "$1" ]]; then
         cp ~/.vim/default.py "$1"
     fi
     vim "+call cursor(4, 4)" $1
+}
+function react() {
+    if [[ ! -f "$1" ]]; then
+      cp ~/.vim/default_react.coffee "$1"
+    fi
+    vim "+call cursor(4,24)" $1
 }
 function h2d() {
     printf "%d\n" "0x$1"
@@ -130,6 +118,9 @@ function me() {
 function line() {
     head -n $1 $2 | tail -n 1
 }
+function dcp() {
+    mkdir -p `dirname $2` && cp -n "$1" "$2";
+}
 
 
 #alias nn='popd && ls'
@@ -146,8 +137,6 @@ alias o='xdg-open'
 alias ag='ag -i'
 alias n='vim ~/Dropbox/notes'
 alias rmf='rm -rf'
-#set -o vi
-#bind -m vi-insert "\C-l":clear-screen
 
 if [[ ! -n $TMUX ]] ; then tmux attach ; fi
 #PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]└──\[\e[01;36m\]>>\[\e[0m\]"

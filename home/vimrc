@@ -21,6 +21,8 @@ map <F3> :NERDTreeToggle<CR>
 let NERDTreeShowLineNumbers=1
 map <S-Right> :tabn<CR>
 map <S-Left> :tabp<CR>
+set wildmode=longest,list,full
+set wildmenu
 
 
 set ttymouse=sgr
@@ -59,3 +61,13 @@ autocmd VimEnter * wincmd w
 
 " Quit if nerdtree is last buffer
 autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+
+set shell=zsh\ -i
+
+function VReact(name)
+  exec "!dcp ~/.vim/default_react.coffee" a:name
+  exec "vsplit" a:name
+  call cursor(4,24)
+endfunction
+
+command! -n=1 -complete=file VReact call VReact(<f-args>)
