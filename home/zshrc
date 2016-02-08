@@ -75,6 +75,9 @@ function parse_git_branch {
 }
 alias gd='git diff'
 alias gs='git status'
+alias gcom='git commit -m'
+alias gcam='git commit --amend'
+alias gp='git push'
 alias ss='source ~/.zshrc'
 export EDITOR=vim
 export DISPLAY=:0
@@ -135,8 +138,9 @@ alias ds='du -h -d0'
 alias goom='goomwwm -cli -restart'
 alias o='xdg-open'
 alias ag='ag -i'
-alias n='vim ~/Dropbox/notes'
+#alias n='vim ~/Dropbox/notes'
 alias rmf='rm -rf'
+alias nfix='printf "\e[?1004l"'
 
 if [[ ! -n $TMUX ]] ; then tmux attach ; fi
 #PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]└──\[\e[01;36m\]>>\[\e[0m\]"
@@ -157,3 +161,5 @@ source '/home/dick/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
 source '/home/dick/google-cloud-sdk/completion.zsh.inc'
+
+test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh

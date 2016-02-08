@@ -1,5 +1,5 @@
 React       = require 'react'
-{ Colors }  = require 'honey-react-common/colors'
+{ Colors }  = require 'honey-react-common/constants'
 
 module.exports = class  extends React.Component
 
