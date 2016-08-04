@@ -78,6 +78,7 @@ alias gs='git status'
 alias gcom='git commit -m'
 alias gcam='git commit --amend'
 alias gp='git push'
+alias gco='git checkout'
 alias ss='source ~/.zshrc'
 export EDITOR=vim
 export DISPLAY=:0
@@ -137,10 +138,13 @@ alias tweet='t update $1'
 alias ds='du -h -d0'
 alias goom='goomwwm -cli -restart'
 alias o='xdg-open'
-alias ag='ag -i'
+alias ag='ag -i --path-to-agignore ~/.agignore'
 #alias n='vim ~/Dropbox/notes'
 alias rmf='rm -rf'
 alias nfix='printf "\e[?1004l"'
+alias rmi='rm -r ./node_modules && npm i'
+alias der='npm run dev-env-reset'
+export GCLOUD_PROJECT='honey-sandbox'
 
 if [[ ! -n $TMUX ]] ; then tmux attach ; fi
 #PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]└──\[\e[01;36m\]>>\[\e[0m\]"
@@ -150,11 +154,16 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 stty start undef stop undef
 
 export PATH=./node_modules/.bin:$PATH
+export PATH=$HOME/honey/honey-developer-tools/bin:$PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/sbin # add sbin to path for rabbit
+PATH=$PATH:$HOME/bin
 
 . $HOME/.z.sh/z.sh
+function honey() {
+  z honey-$1
+}
 
 # The next line updates PATH for the Google Cloud SDK.
 source '/Users/dickfickling/.google/google-cloud-sdk/path.zsh.inc'
