@@ -166,9 +166,9 @@ function honey() {
 }
 
 # The next line updates PATH for the Google Cloud SDK.
-source '/Users/dickfickling/.google/google-cloud-sdk/path.zsh.inc'
+source '/home/dick/google-cloud-sdk/path.zsh.inc'
 
 # The next line enables shell command completion for gcloud.
-source '/Users/dickfickling/.google/google-cloud-sdk/completion.zsh.inc'
+source '/home/dick/google-cloud-sdk/completion.zsh.inc'
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh

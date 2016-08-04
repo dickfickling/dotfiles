@@ -1,4 +1,5 @@
 #!/bin/bash
+export PATH=$PATH:~/bin
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation" 1
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Button" 2
 xinput set-prop "TPPS/2 IBM TrackPoint" "Evdev Wheel Emulation Timeout" 200
@@ -12,6 +13,7 @@ xset fp rehash
 setxkbmap us -variant colemak
 setxkbmap -option terminate:ctrl_alt_bksp
 setxkbmap -option ctrl:nocaps
+setxkbmap -option compose:menu
 xset b off
 xbindkeys &
 opera &

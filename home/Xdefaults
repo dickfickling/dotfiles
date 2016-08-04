@@ -14,9 +14,10 @@ URxvt*geometry:					80x25
 URxvt*borderLess:				false
 URxvt*depth:					32
 URxvt*scrollBar:	            false
-URxvt*font:                     -*-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-1
+!URxvt*font:                     -*-terminus-medium-*-*-*-12-*-*-*-*-*-iso8859-1
 !URxvt*font:                     xft:inconsolata:pixelsize=13:antialias=true
 urxvt*font:                     xft:Terminus:pixelsize=12
+!URxvt*font:                     xft:Lucida Console:antialias=false:hinting=false:size=10
 URxvt*cursorBlink:				false
 URxvt*fullCursor:                true
 URxvt*scrollColor:				#111111
