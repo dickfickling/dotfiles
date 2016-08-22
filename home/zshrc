@@ -59,6 +59,7 @@ if [[ $HOME == /Users/* ]]; then
 
     export LC_ALL=en_US.UTF-8
     alias ls='gls --color=auto'
+    alias sed='gsed'
     eval $(gdircolors -b ~/.dir_colors)
 
 ###### ARCH SPECIFIC OPTIONS ##################################################
@@ -146,7 +147,6 @@ alias rmi='rm -r ./node_modules && npm i'
 alias der='npm run dev-env-reset'
 export GCLOUD_PROJECT='honey-sandbox'
 
-if [[ ! -n $TMUX ]] ; then tmux attach ; fi
 #PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]└──\[\e[01;36m\]>>\[\e[0m\]"
 #export PS1="\\w\$(__git_ps1 '(%s)') \$ "
 export TERM=rxvt
@@ -165,6 +165,10 @@ function honey() {
   z honey-$1
 }
 
+function vers() {
+  grep "\"version\"" package.json | head -n 1 | sed "s/\(^.*version\": \"\)\(.*\)\(\",$\)/\2/"
+}
+
 # The next line updates PATH for the Google Cloud SDK.
 source "$HOME/.google/google-cloud-sdk/path.zsh.inc"
 
@@ -172,3 +176,13 @@ source "$HOME/.google/google-cloud-sdk/path.zsh.inc"
 source "$HOME/.google/google-cloud-sdk/completion.zsh.inc"
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
+
+function hn() {
+  if [[ -a Dockerfile ]]; then
+    nvers=$(head -n 1 Dockerfile | grep node | sed "s/^FROM node:\(.*\)$/\1/")
+    if [[ -n nvers ]]; then
+      echo "Using $nvers"
+      $(n $nvers)
+    fi
+  fi
+}
