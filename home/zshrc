@@ -79,6 +79,7 @@ alias gs='git status'
 alias gcom='git commit -m'
 alias gcam='git commit --amend'
 alias gp='git push'
+alias gl='git pull'
 alias gco='git checkout'
 alias ss='source ~/.zshrc'
 export EDITOR=vim
@@ -110,10 +111,10 @@ function up() {
         cd ..
     done
 }
-function chpwd() {
-    emulate -L zsh
-    ls
-}
+#function chpwd() {
+#    emulate -L zsh
+#    ls
+#}
 function guest() {
     setxkbmap us && xmodmap -e "pointer = default"
 }
@@ -125,6 +126,9 @@ function line() {
 }
 function dcp() {
     mkdir -p `dirname $2` && cp -n "$1" "$2";
+}
+function hclone() {
+    git clone git@github.com:honeyscience/$1.git && cd $1
 }
 
 
@@ -139,12 +143,13 @@ alias tweet='t update $1'
 alias ds='du -h -d0'
 alias goom='goomwwm -cli -restart'
 alias o='xdg-open'
-alias ag='ag -i --path-to-agignore ~/.agignore'
+alias ag='ag -i --path-to-ignore ~/.agignore'
 #alias n='vim ~/Dropbox/notes'
 alias rmf='rm -rf'
 alias nfix='printf "\e[?1004l"'
 alias rmi='rm -r ./node_modules && npm i'
 alias der='npm run dev-env-reset'
+alias t='npm test'
 export GCLOUD_PROJECT='honey-sandbox'
 
 #PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]└──\[\e[01;36m\]>>\[\e[0m\]"
@@ -169,11 +174,17 @@ function vers() {
   grep "\"version\"" package.json | head -n 1 | sed "s/\(^.*version\": \"\)\(.*\)\(\",$\)/\2/"
 }
 
+function release() {
+  hub release create v$(vers)
+}
+
 # The next line updates PATH for the Google Cloud SDK.
 source "$HOME/.google/google-cloud-sdk/path.zsh.inc"
 
 # The next line enables shell command completion for gcloud.
 source "$HOME/.google/google-cloud-sdk/completion.zsh.inc"
+
+export HONEY_NPM_TOKEN='cdd165fe-e6dc-4ca4-9cc3-cb5bea6f2fc4'
 
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
