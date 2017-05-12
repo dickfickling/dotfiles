@@ -127,9 +127,6 @@ function line() {
 function dcp() {
     mkdir -p `dirname $2` && cp -n "$1" "$2";
 }
-function hclone() {
-    git clone git@github.com:honeyscience/$1.git && cd $1
-}
 
 
 #alias nn='popd && ls'
@@ -147,10 +144,11 @@ alias ag='ag -i --path-to-ignore ~/.agignore'
 #alias n='vim ~/Dropbox/notes'
 alias rmf='rm -rf'
 alias nfix='printf "\e[?1004l"'
-alias rmi='rm -r ./node_modules && npm i'
-alias der='npm run dev-env-reset'
+alias rmi='rm -r ./node_modules && yarn install'
 alias t='npm test'
-export GCLOUD_PROJECT='honey-sandbox'
+alias rios='react-native run-ios && react-native log-ios'
+alias randroid='react-native run-android && react-native log-android'
+alias please="sudo"
 
 #PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]└──\[\e[01;36m\]>>\[\e[0m\]"
 #export PS1="\\w\$(__git_ps1 '(%s)') \$ "
@@ -159,16 +157,12 @@ if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 stty start undef stop undef
 
 export PATH=./node_modules/.bin:$PATH
-export PATH=$HOME/honey/honey-developer-tools/bin:$PATH
 
 PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 PATH=$PATH:/usr/local/sbin # add sbin to path for rabbit
 PATH=$PATH:$HOME/bin
 
 . $HOME/.z.sh/z.sh
-function honey() {
-  z honey-$1
-}
 
 function vers() {
   grep "\"version\"" package.json | head -n 1 | sed "s/\(^.*version\": \"\)\(.*\)\(\",$\)/\2/"
@@ -184,8 +178,6 @@ source "$HOME/.google/google-cloud-sdk/path.zsh.inc"
 # The next line enables shell command completion for gcloud.
 source "$HOME/.google/google-cloud-sdk/completion.zsh.inc"
 
-export HONEY_NPM_TOKEN='cdd165fe-e6dc-4ca4-9cc3-cb5bea6f2fc4'
-
 test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
 
 function hn() {
@@ -197,3 +189,10 @@ function hn() {
     fi
   fi
 }
+
+# React native requirements
+export ANDROID_HOME=~/Library/Android/sdk
+export ANDROID_NDK=~/Downloads/android-ndk-r10e
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:$ANDROID_NDK
