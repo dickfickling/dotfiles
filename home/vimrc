@@ -17,11 +17,13 @@ set splitbelow
 set ruler
 set pastetoggle=<F2>
 set wildignore+=**/node_modules/*
+set wildignore+=**env/*
 set wildignore+=**ios/build/*
 set wildignore+=**ios/Pods/*
 set wildignore+=**/*.svg
 set wildignore+=**/*.jpg
 set wildignore+=**/*.png
+set wildignore+=**/*.pyc
 set wildignore+=**android/app/build/*
 map <F3> :NERDTreeToggle<CR>
 let NERDTreeShowLineNumbers=1
