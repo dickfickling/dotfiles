@@ -31,7 +31,8 @@ map <S-Right> :tabn<CR>
 map <S-Left> :tabp<CR>
 set wildmode=longest,list,full
 set wildmenu
-
+set fdm=syntax
+set foldlevelstart=99
 
 syntax on
 "colorscheme solarized
@@ -84,6 +85,7 @@ endfunction
 command! -n=1 -complete=file VReact call VReact(<f-args>)
 
 iabbrev cl console.log
+iabbrev ipdb import pdb; pdb.set_trace()
 
 let g:jsx_ext_required = 0
 
