@@ -13,3 +13,5 @@ email = dick@fickling.us
 	default = simple
 [help]
 	autocorrect = 5
+[pull]
+	rebase = false

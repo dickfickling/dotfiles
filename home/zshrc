@@ -157,20 +157,16 @@ function set-cluster() {
   gcloud config set container/cluster $1
 }
 
-function egg() {
-  gcloud auth login
-  gcloud auth application-default login
-  gcloud config set project prize-egg
-  gcloud config set compute/zone us-central1-a
-  set-cluster egg-1
+function use-dev() {
+  gcloud config set project chums-dev
+  gcloud config set compute/zone us-central1
+  set-cluster chums-1
 }
 
-function dave() {
-  gcloud auth login
-  gcloud auth application-default login
-  gcloud config set project dave-173321
-  gcloud config set compute/zone us-central1-b
-  set-cluster dave-api-v2
+function use-prod() {
+  gcloud config set project chums-production
+  gcloud config set compute/zone us-central1
+  set-cluster chums-1
 }
 
 #PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]└──\[\e[01;36m\]>>\[\e[0m\]"
@@ -225,17 +221,28 @@ export ANDROID_NDK=~/Downloads/android-ndk-r10e
 export PATH=$PATH:$ANDROID_HOME/tools
 export PATH=$PATH:$ANDROID_HOME/platform-tools
 export PATH=$PATH:$ANDROID_NDK
-export PATH=$PATH:$(yarn global bin)
+#export PATH=$PATH:$(yarn global bin)
 
 
 #if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
 #  source /usr/local/bin/virtualenvwrapper.sh
 #fi
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/dickfickling/Downloads/google-cloud-sdk/path.zsh.inc' ]; then source '/Users/dickfickling/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
+source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
 
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/dickfickling/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then source '/Users/dickfickling/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /usr/local/bin/terraform terraform
 
-alias vim=code
+# npm aliases
+alias dev='npm run dev'
+alias ni='npm install'
+alias ndi='npm install --save-dev'
+
+export KUBE_EDITOR='code --wait'
+alias k="kubectl"
+
+alias pr="gh pr create -f; gh pr view --web"
+alias tq="npm run test-quick"
+alias t="npm run test"
