@@ -53,6 +53,20 @@ bindkey -M viins "\e[B" down-line-or-history
 bindkey -M viins "\eOA" up-line-or-history
 bindkey -M viins "\eOB" down-line-or-history
 
+# HOMEBREW
+export HOMEBREW_PREFIX="/opt/homebrew";
+export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
+export HOMEBREW_REPOSITORY="/opt/homebrew";
+export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
+export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
+
+export PATH=./node_modules/.bin:$PATH
+export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
+export PATH=$PATH:/usr/local/sbin # add sbin to path for rabbit
+export PATH=$PATH:$HOME/bin
+
+
 ########## DICK'S SUPER AWESOME ZSHRC OF SUPER DUPER SPECTACULARITY ##########
 
 ##### OSX SPECIFIC OPTIONS ###################################################
@@ -175,12 +189,6 @@ export TERM=rxvt
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 stty start undef stop undef
 
-export PATH=./node_modules/.bin:$PATH
-
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-PATH=$PATH:/usr/local/sbin # add sbin to path for rabbit
-PATH=$PATH:$HOME/bin
-
 . $HOME/.z.sh/z.sh
 
 function vers() {
@@ -228,9 +236,9 @@ export PATH=$PATH:$ANDROID_NDK
 #  source /usr/local/bin/virtualenvwrapper.sh
 #fi
 
-export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/path.zsh.inc"
-source "/usr/local/Caskroom/google-cloud-sdk/latest/google-cloud-sdk/completion.zsh.inc"
+#export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
+source "/Users/dick/google-cloud-sdk/path.zsh.inc"
+source "/Users/dick/google-cloud-sdk/completion.zsh.inc"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
@@ -240,9 +248,12 @@ alias dev='npm run dev'
 alias ni='npm install'
 alias ndi='npm install --save-dev'
 
-export KUBE_EDITOR='code --wait'
 alias k="kubectl"
 
 alias pr="gh pr create -f; gh pr view --web"
 alias tq="npm run test-quick"
 alias t="npm run test"
+
+alias code="code-insiders"
+
+export KUBE_EDITOR='code-insiders --wait'

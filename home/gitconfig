@@ -10,8 +10,10 @@ email = dick@fickling.us
   apply-gitignore = !git ls-files -ci --exclude-standard -z | xargs git rm --cached
 
 [push]
-	default = simple
+	default = current
 [help]
 	autocorrect = 5
 [pull]
 	rebase = false
+[init]
+	defaultBranch = main

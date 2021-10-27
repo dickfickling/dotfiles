@@ -1,1 +1,3 @@
 source ~/.bashrc
+source "/Users/dick/.rover/env"
+. "$HOME/.cargo/env"
