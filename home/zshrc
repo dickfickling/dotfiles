@@ -58,33 +58,22 @@ export HOMEBREW_PREFIX="/opt/homebrew";
 export HOMEBREW_CELLAR="/opt/homebrew/Cellar";
 export HOMEBREW_REPOSITORY="/opt/homebrew";
 export PATH="/opt/homebrew/bin:/opt/homebrew/sbin${PATH+:$PATH}";
+export PATH="/opt/homebrew/opt/ruby/bin:/opt/homebrew/lib/ruby/gems/3.1.0/bin:$PATH"
 export MANPATH="/opt/homebrew/share/man${MANPATH+:$MANPATH}:";
 export INFOPATH="/opt/homebrew/share/info:${INFOPATH:-}";
 
+export PATH=$HOME/.yarn/bin:$PATH
 export PATH=./node_modules/.bin:$PATH
-export PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
-export PATH=$PATH:/usr/local/sbin # add sbin to path for rabbit
 export PATH=$PATH:$HOME/bin
 
+# PIPX
+export PATH=$PATH:$HOME/.local/bin
 
-########## DICK'S SUPER AWESOME ZSHRC OF SUPER DUPER SPECTACULARITY ##########
 
-##### OSX SPECIFIC OPTIONS ###################################################
-if [[ $HOME == /Users/* ]]; then
-
-    export LC_ALL=en_US.UTF-8
-    alias ls='gls --color=auto'
-    alias sed='gsed'
-    eval $(gdircolors -b ~/.dir_colors)
-
-###### ARCH SPECIFIC OPTIONS ##################################################
-else
-
-    eval $(dircolors -b ~/.dir_colors)
-    alias ls='ls --color=auto'
-
-fi
-###### ARCHITECTURE INDEPENDENT ###############################################
+export LC_ALL=en_US.UTF-8
+alias ls='gls --color=auto'
+alias sed='gsed'
+eval $(gdircolors -b ~/.dir_colors)
 
 function parse_git_branch {
     git branch --no-color 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
@@ -97,119 +86,31 @@ alias gp='git push'
 alias gl='git pull'
 alias gco='git checkout'
 alias ss='source ~/.zshrc'
-alias :q=exit
-alias enode='source .env && node'
-export EDITOR=vim
+alias vim=nvim
+alias code=nvim
+export EDITOR=nvim
 export DISPLAY=:0
 autoload -U colors && colors
-PROMPT='%B%F{red}%m%F{white}:%F{blue}%c%b%F{green}$(parse_git_branch)%f • '
+PROMPT='%B%F{red}%m%F{white}:%F{blue}%2d%b%F{green}$(parse_git_branch)%f • '
 RPROMPT='%F{white}%*%f'
 
-function newpy() {
-    if [[ ! -f "$1" ]]; then
-        cp ~/.vim/default.py "$1"
-    fi
-    vim "+call cursor(4, 4)" $1
-}
-function react() {
-    if [[ ! -f "$1" ]]; then
-      cp ~/.vim/default_react.coffee "$1"
-    fi
-    vim "+call cursor(4,24)" $1
-}
 function h2d() {
     printf "%d\n" "0x$1"
 }
 function d2h() {
     printf "%x\n" "$1"
 }
-function up() {
-    for ((i = 0; i < $1; i += 1)); do
-        cd ..
-    done
-}
-#function chpwd() {
-#    emulate -L zsh
-#    ls
-#}
-function guest() {
-    setxkbmap us && xmodmap -e "pointer = default"
-}
-function me() {
-    setxkbmap us -variant colemak && xmodmap ~/.Xmodmap
-}
-function line() {
-    head -n $1 $2 | tail -n 1
-}
-function dcp() {
-    mkdir -p `dirname $2` && cp -n "$1" "$2";
-}
 
-
-#alias nn='popd && ls'
 alias curl='curl -w "\n"'
 alias ta='tmux attach'
-alias lc='tmux list-clients'
 alias watch='watch --interval=.5 '
-alias yc='links news.ycombinator.com'
 alias md='mkdir'
-alias tweet='t update $1'
-alias ds='du -h -d0'
-alias goom='goomwwm -cli -restart'
-alias o='xdg-open'
-alias ag='ag -i --path-to-ignore ~/.agignore'
-#alias n='vim ~/Dropbox/notes'
-alias rmf='rm -rf'
-alias nfix='printf "\e[?1004l"'
-alias rmi='rm -r ./node_modules && yarn install'
-alias rios='react-native run-ios && react-native log-ios'
-alias randroid='react-native run-android && react-native log-android'
-alias please="sudo"
 
-function set-cluster() {
-  gcloud container clusters get-credentials $1
-  gcloud config set container/cluster $1
-}
-
-function use-dev() {
-  gcloud config set project chums-dev
-  gcloud config set compute/zone us-central1
-  set-cluster chums-1
-}
-
-function use-prod() {
-  gcloud config set project chums-production
-  gcloud config set compute/zone us-central1
-  set-cluster chums-1
-}
-
-#PS1="\[\e[01;31m\]┌─[\[\e[01;35m\u\e[01;31m\]]──[\[\e[00;37m\]${HOSTNAME%%.*}\[\e[01;32m\]]:\w$\[\e[01;31m\]\n\[\e[01;31m\]└──\[\e[01;36m\]>>\[\e[0m\]"
-#export PS1="\\w\$(__git_ps1 '(%s)') \$ "
 export TERM=rxvt
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 stty start undef stop undef
 
 . $HOME/.z.sh/z.sh
-
-function vers() {
-  grep "\"version\"" package.json | head -n 1 | sed "s/\(^.*version\": \"\)\(.*\)\(\",$\)/\2/"
-}
-
-function release() {
-  hub release create v$(vers)
-}
-
-test -e ${HOME}/.iterm2_shell_integration.zsh && source ${HOME}/.iterm2_shell_integration.zsh
-
-function hn() {
-  if [[ -a Dockerfile ]]; then
-    nvers=$(head -n 1 Dockerfile | grep node | sed "s/^FROM node:\(.*\)$/\1/")
-    if [[ -n nvers ]]; then
-      echo "Using $nvers"
-      $(n $nvers)
-    fi
-  fi
-}
 
 function secret() {
   echo -n "$1" | base64 | tr -d '\n' | pbcopy
@@ -219,41 +120,47 @@ function unsecret() {
   echo -n "$1" | base64 -D
 }
 
-function restart() {
-  kubectl delete pods $(kubectl get pods --no-headers --selector=run=$1 | awk '{print $1}')
+function cuid() {
+  node -e "console.log(require('cuid')())" | tr -d '\n' | pbcopy
 }
 
-# React native requirements
-export ANDROID_HOME=~/Library/Android/sdk
-export ANDROID_NDK=~/Downloads/android-ndk-r10e
-export PATH=$PATH:$ANDROID_HOME/tools
-export PATH=$PATH:$ANDROID_HOME/platform-tools
-export PATH=$PATH:$ANDROID_NDK
-#export PATH=$PATH:$(yarn global bin)
+function rm-deployments() {
+  # list the deployments
+  # pick out the ones where the date is starts with yyyy-mm-dd where dd is 11 days ago, and then remove the last character
+  # e.g. if it's 2022-05-20, then we want 2022-05-09 => 2022-05-0, any deployment made in the first 9 days of May
+  # then remove them
+  appcenter codepush deployment list -a groundswell-giving/GroundSwell-$1 -k -s | grep $(date -I -v -11d | tr -d '\n' | sed "s/\w$//g") | awk '{ print $2 }' | xargs -n 1 appcenter codepush deployment remove -a groundswell-giving/GroundSwell-$1 --quiet
+}
 
+function upload() {
+  curl -X POST -H "Content-Type: multipart/form-data" -H "Authorization: MEEP_MORP" -F "files=@$1" https://api.groundswell.io/v1/upload | jq '.uploadedUrls'
+}
 
-#if [[ -a /usr/local/bin/virtualenvwrapper.sh ]]; then
-#  source /usr/local/bin/virtualenvwrapper.sh
-#fi
-
-#export CLOUDSDK_PYTHON="/usr/local/opt/python@3.8/libexec/bin/python"
-source "/Users/dick/google-cloud-sdk/path.zsh.inc"
-source "/Users/dick/google-cloud-sdk/completion.zsh.inc"
+# usage rm-ios
+alias rm-ios="rm-deployments iOS-1"
+alias rm-android="rm-deployments Android"
 
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 
-# npm aliases
-alias dev='npm run dev'
-alias ni='npm install'
-alias ndi='npm install --save-dev'
-
-alias k="kubectl"
-
-alias pr="gh pr create -f; gh pr view --web"
+alias pr="git push origin --no-verify && gh pr create --body '$1' -f; gh pr view --web"
 alias tq="npm run test-quick"
 alias t="npm run test"
+alias lg="LOG_REQUESTS=true"
+alias v4="uuid v4 | tr -d '\n' | pbcopy"
+alias run="node -r @swc-node/register"
+alias pbackup="osxphotos export /Volumes/Extreme\ Pro/photos --directory \"{created.year}.{created.mm}\" --download-missing --update --verbose | tee -a /Volumes/Extreme\ Pro/photos.log"
+alias lightdark="osascript -e 'tell app \"System Events\" to tell appearance preferences to set dark mode to not dark mode'"
 
-alias code="code-insiders"
+export KUBE_EDITOR='code --wait'
+# bun completions
+[ -s "/Users/dick/.bun/_bun" ] && source "/Users/dick/.bun/_bun"
 
-export KUBE_EDITOR='code-insiders --wait'
+# bun
+export BUN_INSTALL="$HOME/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
+
+# android
+export ANDROID_HOME=$HOME/Library/Android/sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/platform-tools
