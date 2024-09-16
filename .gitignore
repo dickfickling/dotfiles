@@ -1,2 +1,6 @@
 home/vim/tmp/*
 home/vim/.netrwhist
+home/vim/plugged/
+
+tags
+.DS_Store

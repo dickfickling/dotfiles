@@ -1,128 +1,202 @@
-"set nocompatible
-"set background=light
-set background=dark
+set encoding=utf-8
+set mouse=a
+
+set hidden " keep buffers open when switching
+
+set backspace=indent,eol,start
+
 set backup
 set backupdir=~/.vim/tmp
+
 set directory=~/.vim/tmp
-"set ttimeoutlen=100
+
+set number
 set relativenumber
+set signcolumn=number " always show the sign column to prevent the text from jumping
+
 set undofile
 set undodir=~/.vim/tmp
-set ignorecase
-set smartcase
-set gdefault
-set backspace=indent,eol,start
+
+set incsearch " find the next match while searching
+set ignorecase " ignore case while searching
+set smartcase " unless i type a capital
+set hlsearch " highlight searches by default
+nnoremap <CR> :noh<CR><CR>
+
 set splitright
 set splitbelow
+
 set ruler
-set pastetoggle=<F2>
-set wildignore+=**/node_modules/*
-set wildignore+=**env/*
-set wildignore+=**ios/build/*
-set wildignore+=**ios/Pods/*
-set wildignore+=**/*.svg
-set wildignore+=**/*.jpg
-set wildignore+=**/*.png
-set wildignore+=**/*.pyc
-set wildignore+=**android/app/build/*
-map <F3> :NERDTreeToggle<CR>
-let NERDTreeShowLineNumbers=1
-map <S-Right> :tabn<CR>
-map <S-Left> :tabp<CR>
-set wildmode=longest,list,full
-set wildmenu
-set fdm=syntax
-set foldlevelstart=99
 
 syntax on
-"colorscheme solarized
+
+set smarttab
 set expandtab
 set tabstop=2
 set shiftwidth=2
-if has('mouse')
-  set mouse=a
-endif
 
-if has("mouse_sgr")
-  set ttymouse=sgr
-else
-  set ttymouse=xterm2
-end
+" cursor is a line in insert mode, block in insert mode
+let &t_SI = "\e[6 q"
+let &t_EI = "\e[2 q"
+
+" automatically reload the file if it changes
+set autoread
+au CursorHold * checktime  
+
 filetype plugin indent on
-map <CR> o<Esc>
-map! <F7> <ESC> :wq <Enter>
-map <F7> :wq <Enter>
-command Wq wq
-nnoremap <F5> :w ! ./%<Enter>
- " When editing a file, always jump to the last known cursor position.
- " Don't do it when the position is invalid or when inside an event
- " handler
- " (happens when dropping a file on gvim).
-autocmd BufReadPost *
- \ if line("'\"") > 0 && line("'\"") <= line("$") |
- \   exe "normal! g`\"" |
- \ endif
-map OA <Up>
-map OB <Down>
-map OD <Left>
-map OC <Right>
-let g:CommandTHighlightColor='Pmenu'
-execute pathogen#infect()
 
-autocmd VimEnter * NERDTree
-autocmd VimEnter * wincmd w
+call plug#begin()
 
-" Quit if nerdtree is last buffer
-autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTreeType") && b:NERDTreeType == "primary") | q | endif
+Plug 'ludovicchabant/vim-gutentags'
+Plug 'preservim/nerdtree'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
+
+" Mason (plugins?) and language server config
+Plug 'williamboman/mason.nvim'
+Plug 'williamboman/mason-lspconfig.nvim'
+Plug 'neovim/nvim-lspconfig'
+
+Plug 'elzr/vim-json' " Improved highlight on JSON
+Plug 'jparise/vim-graphql' " Improved highlight on GraphQL
+Plug 'HerringtonDarkholme/yats.vim'
+Plug 'maxmellon/vim-jsx-pretty'
+Plug 'chrisbra/Colorizer' " Show RGB colors on vim
+Plug 'prisma/vim-prisma' " Improved highlight for Prisma files
+Plug 'themaxmarchuk/tailwindcss-colors.nvim'
+
+Plug 'github/copilot.vim'
+Plug 'neoclide/coc.nvim', {'branch': 'release'}
+
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+
+Plug 'nburns/vim-auto-light-dark'
+Plug 'Mofiqul/vscode.nvim'
+
+call plug#end()
+
+" FZF config
+let $FZF_DEFAULT_COMMAND = 'fd --type f --strip-cwd-prefix' " use fd instead of find to exclude gitignored
+let $FZF_DEFAULT_OPTS = '--reverse' " put the text input at the top like vscode
+
+" exclude gitignore in parent directory (root of repo)
+command! -bang -nargs=* Ag
+  \ call fzf#vim#ag(<q-args>, "--path-to-ignore ../.gitignore", fzf#vim#with_preview(), <bang>0)
+
+nnoremap <leader>f :Files<CR>
+nmap <leader>s :Ag<CR>
+nmap <leader>t :Tags<CR>
 
 
-function VReact(name)
-  exec "!mkdir -p `dirname " a:name "` && cp -n  ~/.vim/default-react.js" a:name
-  exec "vsplit" a:name
-  call cursor(7,22)
+let g:fzf_action = {
+  \ 'ctrl-x': 'split',
+  \ 'ctrl-v': 'vsplit',
+  \ 'ctrl-t': 'tabnew'
+  \ }
+
+" NERDTree config
+nnoremap <leader>n :NERDTreeFocus<CR>
+nnoremap <C-t> :NERDTreeToggle<CR>
+
+" JSON config
+let g:vim_json_syntax_conceal = 0
+
+" COC config
+
+let g:coc_global_extensions = ['coc-json', 'coc-git', 'coc-tsserver', '@yaegassy/coc-tailwindcss3', 'coc-eslint', 'coc-prisma', 'coc-biome']
+set updatetime=300
+
+function! CheckBackspace() abort
+  let col = col('.') - 1
+  return !col || getline('.')[col - 1]  =~# '\s'
 endfunction
 
-command! -n=1 -complete=file VReact call VReact(<f-args>)
+" GoTo code navigation
+nmap <silent> gd <Plug>(coc-definition)
+nmap <silent> gy <Plug>(coc-type-definition)
+nmap <silent> gi <Plug>(coc-implementation)
+nmap <silent> gr <Plug>(coc-references)
+nmap <silent> <leader>a <Plug>(coc-codeaction)
 
-iabbrev cl console.log
-iabbrev ipdb import pdb; pdb.set_trace()
+" Use <C-i> to show documentation in preview window
+nnoremap <C-i> :call ShowDocumentation()<CR>
 
-let g:jsx_ext_required = 0
+function! ShowDocumentation()
+  if CocAction('hasProvider', 'hover')
+    call CocActionAsync('doHover')
+  else
+    call feedkeys('K', 'in')
+  endif
+endfunction
 
-nmap <Leader>a: :Tabularize /:/l0l1<CR>
-vmap <Leader>a: :Tabularize /:/l0l1<CR>
+" Highlight the symbol and its references when holding the cursor
+autocmd CursorHold * silent call CocActionAsync('highlight')
 
-nmap <Leader>at :CommandTFlush<CR>
-vmap <Leader>at :CommandTFlush<CR>
+" Format source code
+command! -nargs=0 Format :call CocActionAsync('format')
 
-nmap RR :e %<CR>
+" Symbol renaming
+nmap <F2> <Plug>(coc-rename)
+
+inoremap <silent><expr> <CR> coc#pum#visible() ? coc#pum#confirm()
+                              \: "\<C-g>u\<CR>\<c-r>=coc#on_enter()\<CR>"
 
 
-" Syntastic
-"set statusline+=%#warningmsg#
-"set statusline+=%{SyntasticStatuslineFlag()}
-"set statusline+=%*
-"
-"let g:syntastic_always_populate_loc_list = 1
-"let g:syntastic_loc_list_height = 5
-"let g:syntastic_auto_loc_list = 0
-"let g:syntastic_javascript_checkers = ['eslint']
-"
-"let g:syntastic_error_symbol = 'x'
-"let g:syntastic_style_error_symbol = '!?'
-"let g:syntastic_warning_symbol = '!'
-"let g:syntastic_style_warning_symbol = '?'
-"
-"highlight link SyntasticErrorSign SignColumn
-"highlight link SyntasticWarningSign SignColumn
-"highlight link SyntasticStyleErrorSign SignColumn
-"highlight link SyntasticStyleWarningSign SignColumn
-"
-"
-"nmap <Leader>as :SyntasticCheck<CR>
-"vmap <Leader>as :SyntasticCheck<CR>
+" go to definition in current file or split
+function! SplitIfNotOpen(...)
+    let fname = a:1
+    let call = ''
+    if a:0 == 2
+	let fname = a:2
+	let call = a:1
+    endif
+    let bufnum=bufnr(expand(fname))
+    let winnum=bufwinnr(bufnum)
+    if winnum != -1
+	" Jump to existing split
+	exe winnum . "wincmd w"
+    else
+	" Make new split as usual
+	exe "vsplit " . fname
+    endif
+    " Execute the cursor movement command
+    exe call
+endfunction
 
-noremap <PageUp> <NOP>
-noremap <PageDown> <NOP>
-inoremap <PageUp> <NOP>
-inoremap <PageDown> <NOP>
+command! -nargs=+ CocSplitIfNotOpen :call SplitIfNotOpen(<f-args>)
+
+" Fugitive config
+nnoremap <leader>b :Git blame<CR>
+nnoremap <leader>gi :Git<CR>
+nnoremap <leader>gh :.GBrowse<CR>
+
+" Undo the git chunk under the cursor
+nnoremap <C-k> :CocCommand git.chunkUndo<CR>
+
+" Theme config
+set termguicolors
+
+function DarkMode()
+  lua require('vscode').load('dark')
+endfunction
+
+function LightMode()
+  lua require('vscode').load('light')
+endfunction
+
+" Colorizer Config
+let g:colorizer_auto_filetype='css,html,javascript,json,scss,typescriptreact,typescript,vue'
+
+" Gutentags Config
+let g:gutentags_define_advanced_commands = 1
+" uncomment the following line to enable debugging
+"let g:gutentags_trace = 1
+" use ripgrep to find files (ignores gitignored files)
+let g:gutentags_file_list_command='rg --files'
+" treate package.json as project root so it doesn't go up to the root of the repo
+let gutentags_project_root=['package.json']
+" treat tsx files as ts files
+let g:gutentags_ctags_extra_args=['--map-typescript=+.ts', '--map-typescript=+.tsx']

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+    <key>Label</key>
+    <string>us.fickling.idiot</string>
+    <key>ProgramArguments</key>
+    <array>
+        <string>/Users/dick/bin/idiot.sh</string>
+    </array>
+    <key>RunAtLoad</key>
+    <true/>
+    <key>StandardOutPath</key>
+    <string>/tmp/idiot.out</string>
+    <key>StandardErrorPath</key>
+    <string>/tmp/idiot.err</string>
+</dict>
+</plist>
