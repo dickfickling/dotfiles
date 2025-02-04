@@ -8,8 +8,6 @@ set backspace=indent,eol,start
 set backup
 set backupdir=~/.vim/tmp
 
-set directory=~/.vim/tmp
-
 set number
 set relativenumber
 set signcolumn=number " always show the sign column to prevent the text from jumping
@@ -75,6 +73,8 @@ Plug 'vim-airline/vim-airline-themes'
 
 Plug 'nburns/vim-auto-light-dark'
 Plug 'Mofiqul/vscode.nvim'
+
+Plug 'catppuccin/nvim', { 'as': 'catppuccin' }
 
 call plug#end()
 
@@ -180,11 +180,11 @@ nnoremap <C-k> :CocCommand git.chunkUndo<CR>
 set termguicolors
 
 function DarkMode()
-  lua require('vscode').load('dark')
+  colorscheme catppuccin-mocha
 endfunction
 
 function LightMode()
-  lua require('vscode').load('light')
+  colorscheme catppuccin-latte
 endfunction
 
 " Colorizer Config
@@ -200,3 +200,11 @@ let g:gutentags_file_list_command='rg --files'
 let gutentags_project_root=['package.json']
 " treat tsx files as ts files
 let g:gutentags_ctags_extra_args=['--map-typescript=+.ts', '--map-typescript=+.tsx']
+
+function! Mv(newfile)
+    let oldfile = expand('%:p')
+    execute 'silent !mv' oldfile a:newfile
+    execute 'edit' a:newfile
+endfunction
+
+command! -nargs=1 -complete=file Mv call Mv(<q-args>)

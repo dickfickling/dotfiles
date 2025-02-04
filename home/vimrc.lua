@@ -13,4 +13,16 @@ end
 nvim_lsp["tailwindcss"].setup({
   -- other settings --
   on_attach = on_attach,
+  settings = {
+    tailwindCSS = {
+      experimental = {
+        classRegex = {
+          { "cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]" },
+          { "cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)" }
+        },
+      },
+    },
+  },
 })
+
+vim.cmd.colorscheme "catppuccin"

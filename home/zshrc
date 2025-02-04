@@ -100,13 +100,15 @@ function h2d() {
 function d2h() {
     printf "%x\n" "$1"
 }
+function branch() {
+  git checkout -b rdt-$1-df-$2
+}
 
 alias curl='curl -w "\n"'
 alias ta='tmux attach'
 alias watch='watch --interval=.5 '
 alias md='mkdir'
 
-export TERM=rxvt
 if which rbenv > /dev/null; then eval "$(rbenv init -)"; fi
 stty start undef stop undef
 
@@ -136,6 +138,10 @@ function upload() {
   curl -X POST -H "Content-Type: multipart/form-data" -H "Authorization: MEEP_MORP" -F "files=@$1" https://api.groundswell.io/v1/upload | jq '.uploadedUrls'
 }
 
+function upload2() {
+  AWS_PROFILE=prod aws s3 cp $1  s3://gw-prod-front-end-cdn-origin/emails/$1
+}
+
 # usage rm-ios
 alias rm-ios="rm-deployments iOS-1"
 alias rm-android="rm-deployments Android"
@@ -143,7 +149,7 @@ alias rm-android="rm-deployments Android"
 autoload -U +X bashcompinit && bashcompinit
 complete -o nospace -C /usr/local/bin/terraform terraform
 
-alias pr="git push origin --no-verify && gh pr create --body '$1' -f; gh pr view --web"
+alias pr="git push origin --no-verify && gh pr create --template PULL_REQUEST_TEMPLATE.md --fill-first --web"
 alias tq="npm run test-quick"
 alias t="npm run test"
 alias lg="LOG_REQUESTS=true"
